@@ -13,29 +13,29 @@ namespace NetSoft.Algorithms.Tests
                     new string[]{"h", "e" },
                     new string[]{"s","h", "e" },
                     new Difference<string>(){
-                        new Edit<string>(){Change = 1, Value = new string[]{ "s" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ "h" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ "e" } },
+                        new Edit<string>(){Change = 1, Value = "s" },
+                        new Edit<string>(){Change = 0, Value = "h" },
+                        new Edit<string>(){Change = 0, Value = "e" },
                     }
                 },
                 new object[]{
                     new string[]{"s","h", "e" },
                     new string[]{   "h", "e" },
                     new Difference<string>(){
-                        new Edit<string>(){Change = -1, Value = new string[]{ "s" } },
-                        new Edit<string>(){Change = 0, Value =  new string[]{ "h" } },
-                        new Edit<string>(){Change = 0, Value =  new string[]{ "e" } },
+                        new Edit<string>(){Change = -1, Value =  "s" },
+                        new Edit<string>(){Change = 0, Value =   "h" },
+                        new Edit<string>(){Change = 0, Value =   "e" },
                     }
                 },
                 new object[]{
                     new string[]{      "x=", "1*", "3", ";"},
                     new string[]{"let","x=", "1*",       ";"},
                     new Difference<string>(){
-                        new Edit<string>(){Change = 1, Value = new string[]{ "let" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ "x=" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ "1*" } },
-                        new Edit<string>(){Change = -1, Value = new string[]{ "3" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ ";" } },
+                        new Edit<string>(){Change = 1, Value =  "let" },
+                        new Edit<string>(){Change = 0, Value =  "x=" },
+                        new Edit<string>(){Change = 0, Value =  "1*" },
+                        new Edit<string>(){Change = -1, Value =  "3" },
+                        new Edit<string>(){Change = 0, Value =  ";" },
                     }
                 },
                 new object[]{
@@ -44,11 +44,11 @@ namespace NetSoft.Algorithms.Tests
                     new string[]{"a","x","c","d" },
 
                     new Difference<string>(){
-                        new Edit<string>(){Change = 0, Value = new string[]{ "a" } },
-                        new Edit<string>(){Change = -1, Value = new string[]{ "b" } },
-                        new Edit<string>(){Change = 1, Value = new string[]{ "x" } },
-                        new Edit<string>(){Change = 0, Value = new string[]{ "c" } },
-                        new Edit<string>(){Change = 1, Value = new string[]{ "d" } },
+                        new Edit<string>(){Change = 0, Value =  "a" },
+                        new Edit<string>(){Change = -1, Value =  "b" },
+                        new Edit<string>(){Change = 1, Value =  "x" },
+                        new Edit<string>(){Change = 0, Value =  "c" },
+                        new Edit<string>(){Change = 1, Value =  "d" },
                     }
                 },
             };
@@ -60,10 +60,10 @@ namespace NetSoft.Algorithms.Tests
                     new int[]{ 1,2,3 },
                     new int[]{ 2,3,6},
                     new Difference<int>(){
-                        new Edit<int>(){Change = -1, Value = new int[]{ 1 } },
-                        new Edit<int>(){Change =  0, Value = new int[]{ 2 } },
-                        new Edit<int>(){Change =  0, Value = new int[]{ 3 } },
-                        new Edit<int>(){Change = 1, Value = new int[]{ 6 } },
+                        new Edit<int>(){Change = -1, Value =  1 },
+                        new Edit<int>(){Change =  0, Value =  2 },
+                        new Edit<int>(){Change =  0, Value =  3 },
+                        new Edit<int>(){Change = 1, Value =  6 },
                     }
                 },
             };

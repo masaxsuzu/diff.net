@@ -71,19 +71,19 @@ namespace NetSoft.Algorithms
         #region Unchange/Add/Delete
         private static Difference<T> TraceUnchange(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 0, Value = new T[] { x[i - 1] } }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 0, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j - 1);
         }
 
         private static Difference<T> TraceDelete(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = -1, Value = new T[] { x[i - 1] } }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = -1, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j);
         }
 
         private static Difference<T> TraceAdd(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 1, Value = new T[] { y[j - 1] } }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 1, Value = y[j - 1] }, ses),
                                 editGraph, x, y, i, j - 1);
         }
         #endregion
@@ -146,7 +146,7 @@ namespace NetSoft.Algorithms
     public class Edit<T> : IComparable<Edit<T>> where T : IEquatable<T>
     {
         public short Change { get; set; }
-        public T[] Value { get; set; }
+        public T Value { get; set; }
 
         public int CompareTo(Edit<T> other)
         {
@@ -155,20 +155,7 @@ namespace NetSoft.Algorithms
                 return Change - other.Change;
             }
 
-            if (Value.Length != other.Value.Length)
-            {
-                return Value.Length - other.Value.Length;
-            }
-
-            for (int i = 0; i < Value.Length; i++)
-            {
-                if (!Value[i].Equals(other.Value[i]))
-                {
-                    return 1;
-                }
-            }
-
-            return 0;
+            return Value.Equals(other.Value) ? 0 : 1;
         }
 
         public override string ToString()
@@ -180,11 +167,7 @@ namespace NetSoft.Algorithms
                 : Change > 0
                 ? sb.Append("+")
                 : sb.Append("-");
-            foreach (var item in Value)
-            {
-                _ = sb.Append(item);
-            }
-            return sb.ToString();
+            return sb.Append(Value).ToString();
         }
     }
 }
