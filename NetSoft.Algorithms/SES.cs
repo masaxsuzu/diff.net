@@ -51,11 +51,12 @@ namespace NetSoft.Algorithms
 
         private static Difference<T> Trace(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
+            int now = editGraph[i][j];
             int unchage = editGraph[i - 1][j - 1];
             int add = editGraph[i][j - 1];
             int delete = editGraph[i - 1][j];
 
-            if (unchage < add && unchage < delete)
+            if (unchage < add && unchage < delete && now == unchage)
             {
                 return TraceUnchange(ses, editGraph, x, y, i, j);
             }

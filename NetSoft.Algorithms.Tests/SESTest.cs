@@ -38,6 +38,19 @@ namespace NetSoft.Algorithms.Tests
                         new Edit<string>(){Change = 0, Value = new string[]{ ";" } },
                     }
                 },
+                new object[]{
+
+                    new string[]{"a","b", "c" },
+                    new string[]{"a","x","c","d" },
+
+                    new Difference<string>(){
+                        new Edit<string>(){Change = 0, Value = new string[]{ "a" } },
+                        new Edit<string>(){Change = -1, Value = new string[]{ "b" } },
+                        new Edit<string>(){Change = 1, Value = new string[]{ "x" } },
+                        new Edit<string>(){Change = 0, Value = new string[]{ "c" } },
+                        new Edit<string>(){Change = 1, Value = new string[]{ "d" } },
+                    }
+                },
             };
         }
         public static object[][] Integers()
