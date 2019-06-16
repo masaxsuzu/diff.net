@@ -38,18 +38,18 @@ namespace NetSoft.Algorithms
 
             if (i == 0)
             {
-                return TraceAdd(ses, editGraph, x, y, i, j);
+                return TrackAdd(ses, editGraph, x, y, i, j);
             }
 
             if (j == 0)
             {
-                return TraceDelete(ses, editGraph, x, y, i, j);
+                return TrackDelete(ses, editGraph, x, y, i, j);
             }
 
-            return Trace(ses, editGraph, x, y, i, j);
+            return Track(ses, editGraph, x, y, i, j);
         }
 
-        private static Difference<T> Trace(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static Difference<T> Track(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
             int now = editGraph[i][j];
             int unchage = editGraph[i - 1][j - 1];
@@ -58,30 +58,30 @@ namespace NetSoft.Algorithms
 
             if (unchage < add && unchage < delete && now == unchage)
             {
-                return TraceUnchange(ses, editGraph, x, y, i, j);
+                return TrackUnchange(ses, editGraph, x, y, i, j);
             }
             if (add <= delete)
             {
-                return TraceAdd(ses, editGraph, x, y, i, j);
+                return TrackAdd(ses, editGraph, x, y, i, j);
             }
 
-            return TraceDelete(ses, editGraph, x, y, i, j);
+            return TrackDelete(ses, editGraph, x, y, i, j);
         }
 
         #region Unchange/Add/Delete
-        private static Difference<T> TraceUnchange(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static Difference<T> TrackUnchange(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 0, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j - 1);
         }
 
-        private static Difference<T> TraceDelete(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static Difference<T> TrackDelete(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = -1, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j);
         }
 
-        private static Difference<T> TraceAdd(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static Difference<T> TrackAdd(Difference<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 1, Value = y[j - 1] }, ses),
                                 editGraph, x, y, i, j - 1);
