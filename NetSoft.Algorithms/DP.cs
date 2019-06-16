@@ -6,6 +6,9 @@ namespace NetSoft.Algorithms
 {
     public static class DP
     {
+        /// <summary>
+        /// Diff computes SES(Shortest Edit Script) between two gitven sequences by DP(Dynamic Programming).
+        /// </summary>
         public static EditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
         {
             int m = x.Length;
