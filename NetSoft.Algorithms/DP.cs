@@ -143,20 +143,10 @@ namespace NetSoft.Algorithms
             return sb.ToString();
         }
     }
-    public class Edit<T> : IComparable<Edit<T>> where T : IEquatable<T>
+    public class Edit<T> where T : IEquatable<T>
     {
         public short Change { get; set; }
         public T Value { get; set; }
-
-        public int CompareTo(Edit<T> other)
-        {
-            if (Change != other.Change)
-            {
-                return Change - other.Change;
-            }
-
-            return Value.Equals(other.Value) ? 0 : 1;
-        }
 
         public override string ToString()
         {
