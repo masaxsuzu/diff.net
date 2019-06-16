@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NetSoft.Algorithms
 {
-    public static class DP<T> where T : IEquatable<T>
+    public static class DP
     {
-        public static EditScript<T> Diff(T[] x, T[] y)
+        public static EditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
         {
             int m = x.Length;
             int n = y.Length;
@@ -29,7 +29,8 @@ namespace NetSoft.Algorithms
             return Backtrack(new EditScript<T>(), editGraph, x, y, m, n);
         }
 
-        private static EditScript<T> Backtrack(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static EditScript<T> Backtrack<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+            where T : IEquatable<T>
         {
             if (i == 0 && j == 0)
             {
@@ -49,7 +50,8 @@ namespace NetSoft.Algorithms
             return Track(ses, editGraph, x, y, i, j);
         }
 
-        private static EditScript<T> Track(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static EditScript<T> Track<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+            where T : IEquatable<T>
         {
             int now = editGraph[i][j];
             int unchage = editGraph[i - 1][j - 1];
@@ -69,26 +71,29 @@ namespace NetSoft.Algorithms
         }
 
         #region Unchange/Add/Delete
-        private static EditScript<T> TrackUnchange(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static EditScript<T> TrackUnchange<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+            where T : IEquatable<T>
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 0, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j - 1);
         }
 
-        private static EditScript<T> TrackDelete(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static EditScript<T> TrackDelete<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+            where T : IEquatable<T>
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = -1, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j);
         }
 
-        private static EditScript<T> TrackAdd(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+        private static EditScript<T> TrackAdd<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
+            where T : IEquatable<T>
         {
             return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 1, Value = y[j - 1] }, ses),
                                 editGraph, x, y, i, j - 1);
         }
         #endregion
 
-        private static EditScript<T> AppendRangeAtLast(Edit<T> c, EditScript<T> r)
+        private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
             var x = new EditScript<T>()
             {
