@@ -56,15 +56,15 @@ namespace NetSoft.Algorithms
 
                 if (p.Item1 - q.Item1 == 1 && p.Item2 - q.Item2 == 1)
                 {
-                    ses = DP.AppendRangeAtLast<T>(new Edit<T>() { Change = 0, Value = x[q.Item1] }, ses);
+                    ses = AppendRangeAtLast<T>(new Edit<T>() { Change = 0, Value = x[q.Item1] }, ses);
                 }
                 else if (p.Item2 - q.Item2 == 1 && p.Item1 == q.Item1)
                 {
-                    ses = DP.AppendRangeAtLast<T>(new Edit<T>() { Change = 1, Value = y[q.Item2] }, ses);
+                    ses = AppendRangeAtLast<T>(new Edit<T>() { Change = 1, Value = y[q.Item2] }, ses);
                 }
                 else if (p.Item1 - q.Item1 == 1 && p.Item2 == q.Item2)
                 {
-                    ses = DP.AppendRangeAtLast<T>(new Edit<T>() { Change = -1, Value = x[q.Item1] }, ses);
+                    ses = AppendRangeAtLast<T>(new Edit<T>() { Change = -1, Value = x[q.Item1] }, ses);
                 }
 
 
@@ -78,6 +78,15 @@ namespace NetSoft.Algorithms
 
             }
             return ses;
+        }
+        private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
+        {
+            var x = new EditScript<T>()
+            {
+                c
+            };
+            x.AddRange(r);
+            return x;
         }
     }
 }

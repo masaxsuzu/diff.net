@@ -20,6 +20,15 @@ namespace NetSoft.Algorithms.Tests
             Diff(x, y, want);
         }
 
+        [Theory]
+        [Trait("Category", "Benchmark")]
+        [MemberData(nameof(BenchmarkInput.x500), MemberType = typeof(BenchmarkInput))]
+        [MemberData(nameof(BenchmarkInput.x1000), MemberType = typeof(BenchmarkInput))]
+        [MemberData(nameof(BenchmarkInput.x2000), MemberType = typeof(BenchmarkInput))]
+        public void Benchmark(int[] x, int[] y, EditScript<int> want)
+        {
+            Diff(x, y, want);
+        }
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {

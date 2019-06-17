@@ -95,7 +95,7 @@ namespace NetSoft.Algorithms
         }
         #endregion
 
-        public static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
+        private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
             var x = new EditScript<T>()
             {

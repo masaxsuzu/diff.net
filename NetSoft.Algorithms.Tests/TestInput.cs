@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace NetSoft.Algorithms.Tests
 {
@@ -77,6 +78,49 @@ namespace NetSoft.Algorithms.Tests
                         new Edit<int>(){Change = 1, Value =  6 },
                     }
             };
+        }
+    }
+    public static class BenchmarkInput
+    {
+        public static IEnumerable<object[]> x500()
+        {
+            yield return new object[]{
+                    Enumerable.Range(0,500).ToArray(),
+                    Enumerable.Range(0,500).ToArray(),
+                    Enumerable
+                    .Range(0,500)
+                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .To()
+            };
+        }
+        public static IEnumerable<object[]> x1000()
+        {
+            yield return new object[]{
+                    Enumerable.Range(0,1000).ToArray(),
+                    Enumerable.Range(0,1000).ToArray(),
+                    Enumerable
+                    .Range(0,1000)
+                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .To()
+            };
+        }
+        public static IEnumerable<object[]> x2000()
+        {
+            yield return new object[]{
+                    Enumerable.Range(0,2000).ToArray(),
+                    Enumerable.Range(0,2000).ToArray(),
+                    Enumerable
+                    .Range(0,2000)
+                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .To()
+            };
+        }
+
+        private static EditScript<int> To(this IEnumerable<Edit<int>> from)
+        {
+            var to = new EditScript<int>();
+            to.AddRange(from);
+            return to;
         }
     }
 }
