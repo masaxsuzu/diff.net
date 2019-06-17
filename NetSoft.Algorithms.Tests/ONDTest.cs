@@ -1,10 +1,10 @@
-
-using System;
+﻿using System;
 
 using Xunit;
+
 namespace NetSoft.Algorithms.Tests
 {
-    public class DPTest
+    public class ONDTest
     {
         [Theory]
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
@@ -23,7 +23,7 @@ namespace NetSoft.Algorithms.Tests
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {
-            var got = x.Diff(y);
+            var got = x.xDiff(y);
 
             AssertDifference<T>(want, got);
         }
@@ -38,5 +38,6 @@ namespace NetSoft.Algorithms.Tests
                 Xunit.Assert.Equal(x.Value, y.Value);
             }
         }
+
     }
 }

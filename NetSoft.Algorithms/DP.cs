@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace NetSoft.Algorithms
 {
     public static class DP
@@ -96,7 +95,7 @@ namespace NetSoft.Algorithms
         }
         #endregion
 
-        private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
+        public static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
             var x = new EditScript<T>()
             {
@@ -106,7 +105,7 @@ namespace NetSoft.Algorithms
             return x;
         }
 
-        private static int[][] InitEditGraph(int m, int n)
+        public static int[][] InitEditGraph(int m, int n)
         {
             int[][] editGraph = new int[m + 1][];
 
@@ -124,7 +123,7 @@ namespace NetSoft.Algorithms
         }
 
         [System.Diagnostics.Conditional("DEBUG")]
-        private static void DumpEditGraph(int[][] g)
+        public static void DumpEditGraph(int[][] g)
         {
             var sb = new StringBuilder();
             for (int i = 0; i < g.Length; i++)
