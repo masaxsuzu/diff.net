@@ -97,12 +97,8 @@ namespace NetSoft.Algorithms
 
         private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
-            var x = new EditScript<T>()
-            {
-                c
-            };
-            x.AddRange(r);
-            return x;
+            r.Push(c);
+            return r;
         }
 
         public static int[][] InitEditGraph(int m, int n)
@@ -137,8 +133,12 @@ namespace NetSoft.Algorithms
             string x = sb.ToString();
         }
     }
-    public class EditScript<T> : List<Edit<T>> where T : IEquatable<T>
+    public class EditScript<T> : Stack<Edit<T>> where T : IEquatable<T>
     {
+        public void Add(Edit<T> item)
+        {
+            Push(item);
+        }
         public override string ToString()
         {
             var sb = new StringBuilder();

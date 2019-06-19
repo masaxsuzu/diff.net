@@ -81,12 +81,8 @@ namespace NetSoft.Algorithms
         }
         private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
-            var x = new EditScript<T>()
-            {
-                c
-            };
-            x.AddRange(r);
-            return x;
+            r.Push(c);
+            return r;
         }
     }
 }

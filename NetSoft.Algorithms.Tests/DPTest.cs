@@ -34,12 +34,12 @@ namespace NetSoft.Algorithms.Tests
         {
             var got = x.Diff(y);
 
-            AssertDifference<T>(want, got);
+            AssertDifference<T>(want.ToArray(), got.ToArray());
         }
-        private void AssertDifference<T>(EditScript<T> want, EditScript<T> got) where T : IEquatable<T>
+        private void AssertDifference<T>(Edit<T>[] want, Edit<T>[] got) where T : IEquatable<T>
         {
-            Xunit.Assert.Equal(want.Count, got.Count);
-            for (int i = 0; i < want.Count; i++)
+            Xunit.Assert.Equal(want.Length, got.Length);
+            for (int i = 0; i < want.Length; i++)
             {
                 var x = want[i];
                 var y = got[i];
