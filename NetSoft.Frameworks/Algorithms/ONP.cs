@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
-namespace NetSoft.Algorithms
+[assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
+namespace NetSoft.Frameworks.Algorithms
 {
-    public static class ONP
+    internal static class ONP
     {
         public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {

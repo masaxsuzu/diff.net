@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace NetSoft.Algorithms
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
+namespace NetSoft.Frameworks.Algorithms
 {
-    public static class OND
+    internal static class OND
     {
         public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {

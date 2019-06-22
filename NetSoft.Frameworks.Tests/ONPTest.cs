@@ -1,10 +1,11 @@
-
+﻿using NetSoft.Frameworks.Tests;
 using System;
 
 using Xunit;
-namespace NetSoft.Algorithms.Tests
+
+namespace NetSoft.Frameworks.Algorithms.Tests
 {
-    public class DPTest
+    public class ONPTest
     {
         [Theory]
         [Trait("Category", "String")]
@@ -34,7 +35,7 @@ namespace NetSoft.Algorithms.Tests
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {
-            var got = DP.Diff(x, y);
+            var got = ONP.Diff(x, y);
 
             AssertDifference<T>(want.ToArray(), got.ToArray());
         }
@@ -49,5 +50,6 @@ namespace NetSoft.Algorithms.Tests
                 Xunit.Assert.Equal(x.Value, y.Value);
             }
         }
+
     }
 }

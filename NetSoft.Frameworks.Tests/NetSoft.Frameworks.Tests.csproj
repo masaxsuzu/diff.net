@@ -4,6 +4,8 @@
     <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>NetSoft.Frameworks.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetSoft.Algorithms\NetSoft.Algorithms.csproj" />
+    <ProjectReference Include="..\NetSoft.Frameworks\NetSoft.Frameworks.csproj" />
   </ItemGroup>
 
 </Project>

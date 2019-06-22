@@ -1,8 +1,10 @@
-﻿using System;
+﻿using NetSoft.Frameworks.Tests;
+
+using System;
 
 using Xunit;
 
-namespace NetSoft.Algorithms.Tests
+namespace NetSoft.Frameworks.Algorithms.Tests
 {
     public class ONDTest
     {
@@ -34,7 +36,7 @@ namespace NetSoft.Algorithms.Tests
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {
-            var got = OND.Diff(x, y);
+            var got = NetSoft.Frameworks.Algorithms.OND.Diff(x, y);
 
             AssertDifference<T>(want.ToArray(), got.ToArray());
         }

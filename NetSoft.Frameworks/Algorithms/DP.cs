@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
-namespace NetSoft.Algorithms
+[assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
+namespace NetSoft.Frameworks.Algorithms
 {
-    public static class DP
+    internal static class DP
     {
         /// <summary>
         /// Diff computes SES(Shortest Edit Script) between two gitven sequences by DP(Dynamic Programming).
@@ -131,40 +132,6 @@ namespace NetSoft.Algorithms
                 _ = sb.AppendLine();
             }
             string x = sb.ToString();
-        }
-    }
-    public class EditScript<T> : Stack<Edit<T>> where T : IEquatable<T>
-    {
-        public void Add(Edit<T> item)
-        {
-            Push(item);
-        }
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-
-            foreach (var item in this)
-            {
-                _ = sb.Append($"{item}\n");
-            }
-            return sb.ToString();
-        }
-    }
-    public class Edit<T> where T : IEquatable<T>
-    {
-        public short Change { get; set; }
-        public T Value { get; set; }
-
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-
-            _ = Change == 0
-                ? sb.Append("")
-                : Change > 0
-                ? sb.Append("+")
-                : sb.Append("-");
-            return sb.Append(Value).ToString();
         }
     }
 }

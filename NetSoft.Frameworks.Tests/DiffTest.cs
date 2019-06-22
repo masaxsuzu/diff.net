@@ -2,10 +2,19 @@
 
 using Xunit;
 
-namespace NetSoft.Algorithms.Tests
+namespace NetSoft.Frameworks.Tests
 {
-    public class ONPTest
+    public class DiffTest
     {
+        [Theory]
+        [Trait("Category", "SurrogatePair")]
+        [MemberData(nameof(TestInput.StringWithSurrogatePair), MemberType = typeof(TestInput))]
+        public void SDiff(string x, string y, EditScript<string> want)
+        {
+            var got = x.sDiff(y);
+            AssertDifference<string>(want.ToArray(), got.ToArray());
+        }
+
         [Theory]
         [Trait("Category", "String")]
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
@@ -21,23 +30,14 @@ namespace NetSoft.Algorithms.Tests
         {
             Diff(x, y, want);
         }
-
-        [Theory]
-        [Trait("Category", "Benchmark")]
-        [MemberData(nameof(BenchmarkInput.x500), MemberType = typeof(BenchmarkInput))]
-        [MemberData(nameof(BenchmarkInput.x1000), MemberType = typeof(BenchmarkInput))]
-        [MemberData(nameof(BenchmarkInput.x2000), MemberType = typeof(BenchmarkInput))]
-        public void Benchmark(int[] x, int[] y, EditScript<int> want)
-        {
-            Diff(x, y, want);
-        }
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {
-            var got = ONP.Diff(x, y);
+            var got = x.Diff(y);
 
             AssertDifference<T>(want.ToArray(), got.ToArray());
         }
+
         private void AssertDifference<T>(Edit<T>[] want, Edit<T>[] got) where T : IEquatable<T>
         {
             Xunit.Assert.Equal(want.Length, got.Length);
@@ -49,6 +49,5 @@ namespace NetSoft.Algorithms.Tests
                 Xunit.Assert.Equal(x.Value, y.Value);
             }
         }
-
     }
 }

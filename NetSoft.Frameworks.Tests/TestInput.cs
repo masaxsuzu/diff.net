@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace NetSoft.Algorithms.Tests
+namespace NetSoft.Frameworks.Tests
 {
     public class TestInput
     {
@@ -80,6 +80,20 @@ namespace NetSoft.Algorithms.Tests
                     }
             };
         }
+        public static IEnumerable<object[]> StringWithSurrogatePair()
+        {
+            yield return new object[]{
+                    "xあz",
+                    "x𩸽z",
+                    new EditScript<string>(){
+                        new Edit<string>(){Change = 0, Value = "z" },
+                        new Edit<string>(){Change =  1, Value =  "𩸽" },
+                        new Edit<string>(){Change =  -1, Value =  "あ" },
+                        new Edit<string>(){Change = 0, Value =  "x" },
+                    }
+            };
+        }
+
     }
 
     public static class BenchmarkInput
