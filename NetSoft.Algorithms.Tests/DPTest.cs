@@ -7,6 +7,7 @@ namespace NetSoft.Algorithms.Tests
     public class DPTest
     {
         [Theory]
+        [Trait("Category", "String")]
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
         public void DiffString(string[] x, string[] y, EditScript<string> want)
         {
@@ -14,6 +15,7 @@ namespace NetSoft.Algorithms.Tests
         }
 
         [Theory]
+        [Trait("Category", "Integer")]
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
         public void DiffIneger(int[] x, int[] y, EditScript<int> want)
         {
