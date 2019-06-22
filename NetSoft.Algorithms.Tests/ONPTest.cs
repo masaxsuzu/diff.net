@@ -34,7 +34,7 @@ namespace NetSoft.Algorithms.Tests
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {
-            var got = x.sDiff(y);
+            var got = ONP.Diff(x, y);
 
             AssertDifference<T>(want.ToArray(), got.ToArray());
         }

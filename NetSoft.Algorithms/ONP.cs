@@ -6,7 +6,7 @@ namespace NetSoft.Algorithms
 {
     public static class ONP
     {
-        public static EditScript<T> sDiff<T>(this T[] x, T[] y) where T : IEquatable<T>
+        public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {
             if (x.Length > y.Length)
             {

@@ -8,7 +8,7 @@ namespace NetSoft.Algorithms
         /// <summary>
         /// Diff computes SES(Shortest Edit Script) between two gitven sequences by DP(Dynamic Programming).
         /// </summary>
-        public static EditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
+        public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {
             int m = x.Length;
             int n = y.Length;

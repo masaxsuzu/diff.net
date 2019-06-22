@@ -4,7 +4,7 @@ namespace NetSoft.Algorithms
 {
     public static class OND
     {
-        public static EditScript<T> xDiff<T>(this T[] x, T[] y) where T : IEquatable<T>
+        public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {
             int m = x.Length;
             int n = y.Length;
