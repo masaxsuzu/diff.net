@@ -34,12 +34,6 @@ namespace NetSoft.Frameworks.Algorithms
                     }
                     if (k == n - m && i == m)
                     {
-                        while (i + k < n)
-                        {
-                            path.Add((i, i + k));
-                            k++;
-                        }
-
                         return Backtrack<T>(new EditScript<T>(), path.ToArray(), x, y);
                     }
                     V[offset + k] = i;

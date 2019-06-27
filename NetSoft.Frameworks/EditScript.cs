@@ -10,16 +10,6 @@ namespace NetSoft.Frameworks
         {
             Push(item);
         }
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-
-            foreach (var item in this)
-            {
-                _ = sb.Append($"{item}\n");
-            }
-            return sb.ToString();
-        }
     }
     public class Edit<T> where T : IEquatable<T>
     {
