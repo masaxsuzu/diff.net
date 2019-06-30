@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
 namespace NetSoft.Frameworks.Algorithms
 {
+    [Obsolete("Use OND instead of ONP.")]
     internal static class ONP
     {
         public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>

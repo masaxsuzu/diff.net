@@ -45,7 +45,6 @@ namespace NetSoft.Frameworks.Algorithms.Tests
             where T : IEquatable<T>
         {
             var got = DP.Diff(x, y);
-
             AssertDifference<T>(want.ToArray(), got.ToArray());
         }
         private void AssertDifference<T>(Edit<T>[] want, Edit<T>[] got) where T : IEquatable<T>

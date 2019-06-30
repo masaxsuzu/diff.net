@@ -4,6 +4,7 @@ using System.Text;
 [assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
 namespace NetSoft.Frameworks.Algorithms
 {
+    [Obsolete("Use OND instead of DP.")]
     internal static class DP
     {
         /// <summary>
