@@ -1,4 +1,5 @@
 ﻿using NetSoft.Frameworks.Tests;
+
 using System;
 
 using Xunit;
@@ -19,6 +20,14 @@ namespace NetSoft.Frameworks.Algorithms.Tests
         [Trait("Category", "Integer")]
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
         public void DiffIneger(int[] x, int[] y, EditScript<int> want)
+        {
+            Diff(x, y, want);
+        }
+
+        [Theory]
+        [Trait("Category", "ContainsNull")]
+        [MemberData(nameof(TestInput.ContainsNull), MemberType = typeof(TestInput))]
+        public void TestDiffHandlesSequenceCotainingNull(string[] x, string[] y, EditScript<string> want)
         {
             Diff(x, y, want);
         }

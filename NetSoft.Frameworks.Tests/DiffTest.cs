@@ -9,27 +9,37 @@ namespace NetSoft.Frameworks.Tests
         [Theory]
         [Trait("Category", "SurrogatePair")]
         [MemberData(nameof(TestInput.StringWithSurrogatePair), MemberType = typeof(TestInput))]
-        public void SDiff(string x, string y, EditScript<string> want)
+        public void TestDiff(string x, string y, EditScript<string> want)
         {
-            var got = x.sDiff(y);
+            var got = x.Diff(y);
             AssertDifference<string>(want.ToArray(), got.ToArray());
         }
 
         [Theory]
         [Trait("Category", "String")]
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
-        public void DiffString(string[] x, string[] y, EditScript<string> want)
+        public void TestDiffByStrings(string[] x, string[] y, EditScript<string> want)
         {
             Diff(x, y, want);
         }
 
         [Theory]
+        [Trait("Category", "Null")]
+        [MemberData(nameof(TestInput.Nulls), MemberType = typeof(TestInput))]
+        public void TestDiffThrowsExceptionIfNullArgument(string[] x, string[] y)
+        {
+            var error = Assert.Throws<ArgumentNullException>(() => _ = x.Diff(y));
+        }
+
+        [Theory]
         [Trait("Category", "Integer")]
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
-        public void DiffIneger(int[] x, int[] y, EditScript<int> want)
+        public void TestDiffByIntegers(int[] x, int[] y, EditScript<int> want)
         {
             Diff(x, y, want);
         }
+
+
         private void Diff<T>(T[] x, T[] y, EditScript<T> want)
             where T : IEquatable<T>
         {

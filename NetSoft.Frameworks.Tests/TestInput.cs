@@ -93,7 +93,46 @@ namespace NetSoft.Frameworks.Tests
                     }
             };
         }
+        public static IEnumerable<object[]> Nulls()
+        {
+            yield return new object[]{
+                null,
+                new string[] {"null" },
+            };
+            yield return new object[]{
+                new string[] {"null" },
+                null,
+            };
+        }
+        public static IEnumerable<object[]> ContainsNull()
+        {
+            yield return new object[]{
+                new string[] {"notnull",null,"notnull" },
+                new string[] {"notnull","notnull" },
+                new EditScript<string>(){
+                    new Edit<string>(){Change =  0, Value = "notnull" },
+                    new Edit<string>(){Change = -1, Value = null },
+                    new Edit<string>(){Change =  0, Value = "notnull" },
+                }
+            };
+            yield return new object[]{
+                new string[] {"notnull","notnull" },
+                new string[] {"notnull",null,"notnull" },
+                new EditScript<string>(){
+                    new Edit<string>(){Change =  0, Value = "notnull" },
+                    new Edit<string>(){Change = 1, Value = null },
+                    new Edit<string>(){Change =  0, Value = "notnull" },
+                }
+            };
+            yield return new object[]{
+                new string[] { null },
+                new string[] { null },
+                new EditScript<string>(){
+                    new Edit<string>(){Change =  0, Value = null },
+                }
+            };
 
+        }
     }
 
     public static class BenchmarkInput

@@ -1,4 +1,5 @@
 ﻿using NetSoft.Frameworks.Algorithms;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,9 +11,13 @@ namespace NetSoft.Frameworks
     {
         public static EditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
         {
+            if (x == null || y == null)
+            {
+                throw new ArgumentNullException();
+            }
             return OND.Diff(x, y);
         }
-        public static EditScript<string> sDiff(this string x, string y)
+        public static EditScript<string> Diff(this string x, string y)
         {
             var a = StringInfo.GetTextElementEnumerator(x);
             var b = StringInfo.GetTextElementEnumerator(y);

@@ -25,6 +25,14 @@ namespace NetSoft.Frameworks.Algorithms.Tests
         }
 
         [Theory]
+        [Trait("Category", "ContainsNull")]
+        [MemberData(nameof(TestInput.ContainsNull), MemberType = typeof(TestInput))]
+        public void TestDiffHandlesSequenceCotainingNull(string[] x, string[] y, EditScript<string> want)
+        {
+            Diff(x, y, want);
+        }
+
+        [Theory]
         [Trait("Category", "Benchmark")]
         [MemberData(nameof(BenchmarkInput.x500), MemberType = typeof(BenchmarkInput))]
         [MemberData(nameof(BenchmarkInput.x1000), MemberType = typeof(BenchmarkInput))]

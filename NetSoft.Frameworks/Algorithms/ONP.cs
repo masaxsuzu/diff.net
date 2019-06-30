@@ -37,7 +37,7 @@ namespace NetSoft.Frameworks.Algorithms
                         : k == -p ? V[offset + k + 1] + 1
                         : Math.Max(V[offset + k + 1] + 1, V[offset + k - 1]);
                     _ = path.Add((i, i + k));
-                    while (i < m && i + k < n && x[i].Equals(y[i + k]))
+                    while (i < m && i + k < n && x[i].NullSafeEquals(y[i + k]))
                     {
                         i += 1;
                         _ = path.Add((i, i + k));
@@ -49,7 +49,7 @@ namespace NetSoft.Frameworks.Algorithms
                     int i = k == delta + p ? V[offset + k - 1]
                         : Math.Max(V[offset + k + 1] + 1, V[offset + k - 1]);
                     _ = path.Add((i, i + k));
-                    while (i < m && i + k < n && x[i].Equals(y[i + k]))
+                    while (i < m && i + k < n && x[i].NullSafeEquals(y[i + k]))
                     {
                         i += 1;
                         _ = path.Add((i, i + k));
@@ -62,7 +62,7 @@ namespace NetSoft.Frameworks.Algorithms
                         : Math.Max(V[offset + k + 1] + 1, V[offset + k - 1]);
                     _ = path.Add((i, i + k));
 
-                    while (i < m && i + k < n && x[i].Equals(y[i + k]))
+                    while (i < m && i + k < n && x[i].NullSafeEquals(y[i + k]))
                     {
                         i += 1;
                         _ = path.Add((i, i + k));

@@ -27,7 +27,7 @@ namespace NetSoft.Frameworks.Algorithms
                           : k == D ? V[offset + k - 1]
                           : Math.Max(V[offset + k + 1] + 1, V[offset + k - 1]);
                     path.Add((i, i + k));
-                    while (i < m && i + k < n && x[i].Equals(y[i + k]))
+                    while (i < m && i + k < n && x[i].NullSafeEquals(y[i + k]))
                     {
                         i += 1;
                         path.Add((i, i + k));

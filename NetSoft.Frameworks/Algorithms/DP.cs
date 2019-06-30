@@ -19,7 +19,7 @@ namespace NetSoft.Frameworks.Algorithms
             {
                 for (int j = 1; j <= n; j++)
                 {
-                    editGraph[i][j] = x[i - 1].Equals(y[j - 1])
+                    editGraph[i][j] = x[i - 1].NullSafeEquals(y[j - 1])
                         ? editGraph[i - 1][j - 1]
                         : Math.Min(editGraph[i][j - 1] + 1, editGraph[i - 1][j] + 1);
                 }
