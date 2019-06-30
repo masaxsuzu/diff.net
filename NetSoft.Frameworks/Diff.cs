@@ -9,7 +9,7 @@ namespace NetSoft.Frameworks
 {
     public static class DiffExtension
     {
-        public static EditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
+        public static IEditScript<T> Diff<T>(this T[] x, T[] y) where T : IEquatable<T>
         {
             if (x == null || y == null)
             {
@@ -17,7 +17,7 @@ namespace NetSoft.Frameworks
             }
             return OND.Diff(x, y);
         }
-        public static EditScript<string> Diff(this string x, string y)
+        public static IEditScript<string> Diff(this string x, string y)
         {
             var a = StringInfo.GetTextElementEnumerator(x);
             var b = StringInfo.GetTextElementEnumerator(y);

@@ -78,28 +78,28 @@ namespace NetSoft.Frameworks.Algorithms
         private static EditScript<T> TrackUnchange<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
             where T : IEquatable<T>
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 0, Value = x[i - 1] }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Action = 0, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j - 1);
         }
 
         private static EditScript<T> TrackDelete<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
             where T : IEquatable<T>
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = -1, Value = x[i - 1] }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Action = -1, Value = x[i - 1] }, ses),
                                 editGraph, x, y, i - 1, j);
         }
 
         private static EditScript<T> TrackAdd<T>(EditScript<T> ses, int[][] editGraph, T[] x, T[] y, int i, int j)
             where T : IEquatable<T>
         {
-            return Backtrack(AppendRangeAtLast(new Edit<T>() { Change = 1, Value = y[j - 1] }, ses),
+            return Backtrack(AppendRangeAtLast(new Edit<T>() { Action = 1, Value = y[j - 1] }, ses),
                                 editGraph, x, y, i, j - 1);
         }
         #endregion
 
         private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r) where T : IEquatable<T>
         {
-            r.Push(c);
+            r.Add(c);
             return r;
         }
 

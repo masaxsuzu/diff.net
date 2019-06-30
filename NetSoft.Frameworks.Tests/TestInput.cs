@@ -11,29 +11,29 @@ namespace NetSoft.Frameworks.Tests
                     new string[]{"h", "e" },
                     new string[]{"s","h", "e" },
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 0, Value = "e" },
-                        new Edit<string>(){Change = 0, Value = "h" },
-                        new Edit<string>(){Change = 1, Value = "s" },
+                        new Edit<string>(){Action = 0, Value = "e" },
+                        new Edit<string>(){Action = 0, Value = "h" },
+                        new Edit<string>(){Action = 1, Value = "s" },
                     }
                 };
             yield return new object[]{
                     new string[]{"s","h", "e" },
                     new string[]{   "h", "e" },
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 0, Value =   "e" },
-                        new Edit<string>(){Change = 0, Value =   "h" },
-                        new Edit<string>(){Change = -1, Value =  "s" },
+                        new Edit<string>(){Action = 0, Value =   "e" },
+                        new Edit<string>(){Action = 0, Value =   "h" },
+                        new Edit<string>(){Action = -1, Value =  "s" },
                     }
                 };
             yield return new object[]{
                     new string[]{      "x=", "1*", "3", ";"},
                     new string[]{"let","x=", "1*",       ";"},
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 0, Value =  ";" },
-                        new Edit<string>(){Change = -1, Value =  "3" },
-                        new Edit<string>(){Change = 0, Value =  "1*" },
-                        new Edit<string>(){Change = 0, Value =  "x=" },
-                        new Edit<string>(){Change = 1, Value =  "let" },
+                        new Edit<string>(){Action = 0, Value =  ";" },
+                        new Edit<string>(){Action = -1, Value =  "3" },
+                        new Edit<string>(){Action = 0, Value =  "1*" },
+                        new Edit<string>(){Action = 0, Value =  "x=" },
+                        new Edit<string>(){Action = 1, Value =  "let" },
                     }
                 };
             yield return new object[]{
@@ -41,11 +41,11 @@ namespace NetSoft.Frameworks.Tests
                     new string[]{"a","x","c","d" },
 
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 1, Value =  "d" },
-                        new Edit<string>(){Change = 0, Value =  "c" },
-                        new Edit<string>(){Change = 1, Value =  "x" },
-                        new Edit<string>(){Change = -1, Value =  "b" },
-                        new Edit<string>(){Change = 0, Value =  "a" },
+                        new Edit<string>(){Action = 1, Value =  "d" },
+                        new Edit<string>(){Action = 0, Value =  "c" },
+                        new Edit<string>(){Action = 1, Value =  "x" },
+                        new Edit<string>(){Action = -1, Value =  "b" },
+                        new Edit<string>(){Action = 0, Value =  "a" },
 
                     }
                 };
@@ -54,15 +54,15 @@ namespace NetSoft.Frameworks.Tests
                     new string[]{"s","i","t","t","i","n","g" },
 
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 1, Value =  "g" },
-                        new Edit<string>(){Change = 0, Value =  "n" },
-                        new Edit<string>(){Change = 1, Value =  "i" },
-                        new Edit<string>(){Change = -1, Value =  "e" },
-                        new Edit<string>(){Change = 0, Value =  "t" },
-                        new Edit<string>(){Change = 0, Value =  "t" },
-                        new Edit<string>(){Change = 0, Value =  "i" },
-                        new Edit<string>(){Change = 1, Value =  "s" },
-                        new Edit<string>(){Change = -1, Value =  "k" },
+                        new Edit<string>(){Action = 1, Value =  "g" },
+                        new Edit<string>(){Action = 0, Value =  "n" },
+                        new Edit<string>(){Action = 1, Value =  "i" },
+                        new Edit<string>(){Action = -1, Value =  "e" },
+                        new Edit<string>(){Action = 0, Value =  "t" },
+                        new Edit<string>(){Action = 0, Value =  "t" },
+                        new Edit<string>(){Action = 0, Value =  "i" },
+                        new Edit<string>(){Action = 1, Value =  "s" },
+                        new Edit<string>(){Action = -1, Value =  "k" },
                     }
             };
         }
@@ -73,10 +73,10 @@ namespace NetSoft.Frameworks.Tests
                     new int[]{ 1,2,3 },
                     new int[]{ 2,3,6},
                     new EditScript<int>(){
-                        new Edit<int>(){Change = 1, Value =  6 },
-                        new Edit<int>(){Change =  0, Value =  3 },
-                        new Edit<int>(){Change =  0, Value =  2 },
-                        new Edit<int>(){Change = -1, Value =  1 },
+                        new Edit<int>(){Action = 1, Value =  6 },
+                        new Edit<int>(){Action =  0, Value =  3 },
+                        new Edit<int>(){Action =  0, Value =  2 },
+                        new Edit<int>(){Action = -1, Value =  1 },
                     }
             };
         }
@@ -86,10 +86,10 @@ namespace NetSoft.Frameworks.Tests
                     "xあz",
                     "x𩸽z",
                     new EditScript<string>(){
-                        new Edit<string>(){Change = 0, Value = "z" },
-                        new Edit<string>(){Change =  1, Value =  "𩸽" },
-                        new Edit<string>(){Change =  -1, Value =  "あ" },
-                        new Edit<string>(){Change = 0, Value =  "x" },
+                        new Edit<string>(){Action = 0, Value = "z" },
+                        new Edit<string>(){Action =  1, Value =  "𩸽" },
+                        new Edit<string>(){Action =  -1, Value =  "あ" },
+                        new Edit<string>(){Action = 0, Value =  "x" },
                     }
             };
         }
@@ -110,25 +110,25 @@ namespace NetSoft.Frameworks.Tests
                 new string[] {"notnull",null,"notnull" },
                 new string[] {"notnull","notnull" },
                 new EditScript<string>(){
-                    new Edit<string>(){Change =  0, Value = "notnull" },
-                    new Edit<string>(){Change = -1, Value = null },
-                    new Edit<string>(){Change =  0, Value = "notnull" },
+                    new Edit<string>(){Action =  0, Value = "notnull" },
+                    new Edit<string>(){Action = -1, Value = null },
+                    new Edit<string>(){Action =  0, Value = "notnull" },
                 }
             };
             yield return new object[]{
                 new string[] {"notnull","notnull" },
                 new string[] {"notnull",null,"notnull" },
                 new EditScript<string>(){
-                    new Edit<string>(){Change =  0, Value = "notnull" },
-                    new Edit<string>(){Change = 1, Value = null },
-                    new Edit<string>(){Change =  0, Value = "notnull" },
+                    new Edit<string>(){Action =  0, Value = "notnull" },
+                    new Edit<string>(){Action = 1, Value = null },
+                    new Edit<string>(){Action =  0, Value = "notnull" },
                 }
             };
             yield return new object[]{
                 new string[] { null },
                 new string[] { null },
                 new EditScript<string>(){
-                    new Edit<string>(){Change =  0, Value = null },
+                    new Edit<string>(){Action =  0, Value = null },
                 }
             };
 
@@ -144,7 +144,7 @@ namespace NetSoft.Frameworks.Tests
                     Enumerable.Range(0,500).ToArray(),
                     Enumerable
                     .Range(0,500)
-                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
                     .To()
             };
         }
@@ -155,7 +155,7 @@ namespace NetSoft.Frameworks.Tests
                     Enumerable.Range(0,1000).ToArray(),
                     Enumerable
                     .Range(0,1000)
-                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
                     .To()
             };
         }
@@ -166,7 +166,7 @@ namespace NetSoft.Frameworks.Tests
                     Enumerable.Range(0,2000).ToArray(),
                     Enumerable
                     .Range(0,2000)
-                    .Select(i =>new Edit<int>(){Change = 0, Value = i })
+                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
                     .To()
             };
         }
