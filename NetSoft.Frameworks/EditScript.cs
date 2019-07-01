@@ -13,7 +13,7 @@ namespace NetSoft.Frameworks
 
     public interface IEdit<T> where T : IEquatable<T>
     {
-        public short Action { get; }
+        short Action { get; }
         T Value { get; }
     }
     internal class EditScript<T> : Stack<IEdit<T>>, IEditScript<T> where T : IEquatable<T>

@@ -1,0 +1,8 @@
+﻿<Project>
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Product>diff.net</Product>
+    <Copyright>Copyright 2019 diff.net</Copyright>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+</Project>

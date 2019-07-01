@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetSoft.Frameworks", "NetSo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetSoft.Frameworks.Tests", "NetSoft.Frameworks.Tests\NetSoft.Frameworks.Tests.csproj", "{598AD31B-A345-406C-B1E9-1EAFDA257614}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{0D1AA3F3-2356-479A-987B-BC2010B0029A}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
