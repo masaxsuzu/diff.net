@@ -5,5 +5,7 @@
     <Copyright>Copyright 2019 diff.net</Copyright>
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>
+    <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
+    <PathMap>$(RepoRoot)=.</PathMap>
   </PropertyGroup>
 </Project>
