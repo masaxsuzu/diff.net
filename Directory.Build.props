@@ -4,5 +4,6 @@
     <Product>diff.net</Product>
     <Copyright>Copyright 2019 diff.net</Copyright>
     <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 </Project>
