@@ -20,7 +20,7 @@ namespace NetSoft.Frameworks.Algorithms.Tests
         [Theory]
         [Trait("Category", "Integer")]
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
-        public void DiffIneger(int[] x, int[] y, IEditScript<int> want)
+        public void DiffInteger(int[] x, int[] y, IEditScript<int> want)
         {
             Diff(x, y, want);
         }
