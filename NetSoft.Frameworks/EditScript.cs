@@ -23,12 +23,16 @@ namespace NetSoft.Frameworks
         }
 
         public int Distance { get; private set; }
-        public void Add(Edit<T> item)
+        internal void Add(Edit<T> item)
+        {
+            Add(item, 1);
+        }
+        public void Add(Edit<T> item, int distance)
         {
             Push(item);
             if (item?.Action != 0)
             {
-                Distance++;
+                Distance += distance;
             }
         }
     }
@@ -41,11 +45,20 @@ namespace NetSoft.Frameworks
         {
             var sb = new StringBuilder();
 
-            _ = Action == 0
-                ? sb.Append("")
-                : Action > 0
-                ? sb.Append("+")
-                : sb.Append("-");
+            switch (Action)
+            {
+                case 0:
+                    _ = sb.Append("");
+                    break;
+                case 1:
+                    _ = sb.Append("+");
+                    break;
+                case -1:
+                    _ = sb.Append("-");
+                    break;
+                default:
+                    break;
+            }
             return sb.Append(Value).ToString();
         }
     }
