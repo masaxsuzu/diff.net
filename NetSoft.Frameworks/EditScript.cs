@@ -14,12 +14,14 @@ namespace NetSoft.Frameworks
     public interface IEdit<T> where T : IEquatable<T>
     {
         short Action { get; }
+        T From { get; }
         T Value { get; }
     }
     internal class EditScript<T> : Stack<IEdit<T>>, IEditScript<T> where T : IEquatable<T>
     {
-        public EditScript()
+        public EditScript(int init)
         {
+            Distance = init;
         }
 
         public int Distance { get; private set; }
@@ -40,6 +42,7 @@ namespace NetSoft.Frameworks
     {
         public short Action { get; set; }
         public T Value { get; set; }
+        public T From { get; set; }
 
         public override string ToString()
         {
@@ -56,6 +59,11 @@ namespace NetSoft.Frameworks
                 case -1:
                     _ = sb.Append("-");
                     break;
+                case 2:
+                    _ = sb.Append(From);
+                    _ = sb.Append("->");
+                    break;
+
                 default:
                     break;
             }

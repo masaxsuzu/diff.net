@@ -26,7 +26,9 @@ namespace NetSoft.Frameworks.Algorithms
                           : k == -D ? V[offset + k + 1] + 1
                           : k == D ? V[offset + k - 1]
                           : Math.Max(V[offset + k + 1] + 1, V[offset + k - 1]);
+
                     path.Add((i, i + k));
+
                     while (i < m && i + k < n && x[i].NullSafeEquals(y[i + k]))
                     {
                         i += 1;
@@ -34,7 +36,7 @@ namespace NetSoft.Frameworks.Algorithms
                     }
                     if (k == n - m && i == m)
                     {
-                        return Backtrack<T>(new EditScript<T>(), path.ToArray(), x, y);
+                        return Backtrack<T>(new EditScript<T>(0), path.ToArray(), x, y);
                     }
                     V[offset + k] = i;
                 }
@@ -58,13 +60,21 @@ namespace NetSoft.Frameworks.Algorithms
                 else if (p.Item2 - q.Item2 == 1 && p.Item1 == q.Item1)
                 {
                     ses = AppendRangeAtLast<T>(new Edit<T>() { Action = 1, Value = y[q.Item2] }, ses, 1);
+
                 }
                 else if (p.Item1 - q.Item1 == 1 && p.Item2 == q.Item2)
                 {
-                    ses = AppendRangeAtLast<T>(new Edit<T>() { Action = -1, Value = x[q.Item1] }, ses, 1);
+                    if (ses.TryPeek(out var added) && added.Action == 1)
+                    {
+                        added = ses.Pop();
+                        var replaced = new Edit<T>() { Action = 2, From = x[q.Item1], Value = added.Value };
+                        ses = AppendRangeAtLast<T>(replaced, ses, 2);
+                    }
+                    else
+                    {
+                        ses = AppendRangeAtLast<T>(new Edit<T>() { Action = -1, Value = x[q.Item1] }, ses, 1);
+                    }
                 }
-
-
                 else
                 {
                     k++;

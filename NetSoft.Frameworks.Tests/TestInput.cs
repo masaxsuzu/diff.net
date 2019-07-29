@@ -10,7 +10,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                     new string[]{"h", "e" },
                     new string[]{"s","h", "e" },
-                    new EditScript<string>(){
+                    new EditScript<string>(0){
                         new Edit<string>(){Action = 0, Value = "e" },
                         new Edit<string>(){Action = 0, Value = "h" },
                         new Edit<string>(){Action = 1, Value = "s" },
@@ -19,7 +19,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                     new string[]{"s","h", "e" },
                     new string[]{   "h", "e" },
-                    new EditScript<string>(){
+                    new EditScript<string>(0){
                         new Edit<string>(){Action = 0, Value =   "e" },
                         new Edit<string>(){Action = 0, Value =   "h" },
                         new Edit<string>(){Action = -1, Value =  "s" },
@@ -28,7 +28,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                     new string[]{      "x=", "1*", "3", ";"},
                     new string[]{"let","x=", "1*",       ";"},
-                    new EditScript<string>(){
+                    new EditScript<string>(0){
                         new Edit<string>(){Action = 0, Value =  ";" },
                         new Edit<string>(){Action = -1, Value =  "3" },
                         new Edit<string>(){Action = 0, Value =  "1*" },
@@ -40,29 +40,25 @@ namespace NetSoft.Frameworks.Tests
                     new string[]{"a","b", "c" },
                     new string[]{"a","x","c","d" },
 
-                    new EditScript<string>(){
+                    new EditScript<string>(2){
                         new Edit<string>(){Action = 1, Value =  "d" },
                         new Edit<string>(){Action = 0, Value =  "c" },
-                        new Edit<string>(){Action = 1, Value =  "x" },
-                        new Edit<string>(){Action = -1, Value =  "b" },
+                        new Edit<string>(){Action = 2, Value =  "x", From = "b" },
                         new Edit<string>(){Action = 0, Value =  "a" },
-
                     }
                 };
             yield return new object[]{
                     new string[]{"k","i","t","t","e","n" },
                     new string[]{"s","i","t","t","i","n","g" },
 
-                    new EditScript<string>(){
+                    new EditScript<string>(4){
                         new Edit<string>(){Action = 1, Value =  "g" },
                         new Edit<string>(){Action = 0, Value =  "n" },
-                        new Edit<string>(){Action = 1, Value =  "i" },
-                        new Edit<string>(){Action = -1, Value =  "e" },
+                        new Edit<string>(){Action = 2, Value =  "i", From = "e" },
                         new Edit<string>(){Action = 0, Value =  "t" },
                         new Edit<string>(){Action = 0, Value =  "t" },
                         new Edit<string>(){Action = 0, Value =  "i" },
-                        new Edit<string>(){Action = 1, Value =  "s" },
-                        new Edit<string>(){Action = -1, Value =  "k" },
+                        new Edit<string>(){Action = 2, Value =  "s", From = "k" },
                     }
             };
         }
@@ -72,7 +68,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                     new int[]{ 1,2,3 },
                     new int[]{ 2,3,6},
-                    new EditScript<int>(){
+                    new EditScript<int>(0){
                         new Edit<int>(){Action = 1, Value =  6 },
                         new Edit<int>(){Action =  0, Value =  3 },
                         new Edit<int>(){Action =  0, Value =  2 },
@@ -85,10 +81,9 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                     "xあz",
                     "x𩸽z",
-                    new EditScript<string>(){
+                    new EditScript<string>(2){
                         new Edit<string>(){Action = 0, Value = "z" },
-                        new Edit<string>(){Action =  1, Value =  "𩸽" },
-                        new Edit<string>(){Action =  -1, Value =  "あ" },
+                        new Edit<string>(){Action =  2, Value =  "𩸽",From = "あ" },
                         new Edit<string>(){Action = 0, Value =  "x" },
                     }
             };
@@ -109,7 +104,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                 new string[] {"notnull",null,"notnull" },
                 new string[] {"notnull","notnull" },
-                new EditScript<string>(){
+                new EditScript<string>(0){
                     new Edit<string>(){Action =  0, Value = "notnull" },
                     new Edit<string>(){Action = -1, Value = null },
                     new Edit<string>(){Action =  0, Value = "notnull" },
@@ -118,7 +113,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                 new string[] {"notnull","notnull" },
                 new string[] {"notnull",null,"notnull" },
-                new EditScript<string>(){
+                new EditScript<string>(0){
                     new Edit<string>(){Action =  0, Value = "notnull" },
                     new Edit<string>(){Action = 1, Value = null },
                     new Edit<string>(){Action =  0, Value = "notnull" },
@@ -127,7 +122,7 @@ namespace NetSoft.Frameworks.Tests
             yield return new object[]{
                 new string[] { null },
                 new string[] { null },
-                new EditScript<string>(){
+                new EditScript<string>(0){
                     new Edit<string>(){Action =  0, Value = null },
                 }
             };
@@ -173,7 +168,7 @@ namespace NetSoft.Frameworks.Tests
 
         private static EditScript<int> To(this IEnumerable<Edit<int>> from)
         {
-            var to = new EditScript<int>();
+            var to = new EditScript<int>(0);
             foreach (var item in from.Reverse())
             {
                 to.Push(item);
