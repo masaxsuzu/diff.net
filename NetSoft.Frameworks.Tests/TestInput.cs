@@ -99,6 +99,40 @@ namespace NetSoft.Frameworks.Tests
                 null,
             };
         }
+
+        public static IEnumerable<object[]> Show()
+        {
+            yield return new object[]{
+                "",
+                new EditScript<string>(0)
+                {
+
+                }
+            };
+            yield return new object[]{
+                "+" + System.Environment.NewLine,
+                new EditScript<string>(0)
+                {
+                    new Edit<string>(){Action = 1, Value = System.Environment.NewLine},
+
+                }
+            };
+            yield return new object[]{
+                "-w" + System.Environment.NewLine+
+                "-z" + System.Environment.NewLine+
+                "+y" + System.Environment.NewLine+
+                "+x" ,
+                new EditScript<string>(2)
+                {
+                    new Edit<string>(){Action = 1, Value = "x"},
+                    new Edit<string>(){Action = 0, Value = "0"},
+                    new Edit<string>(){Action = 2, Value = "y", From = "z"},
+                    new Edit<string>(){Action = -1, Value = "w",},
+                }
+            };
+
+        }
+
         public static IEnumerable<object[]> ContainsNull()
         {
             yield return new object[]{
