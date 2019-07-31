@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/NetSoft.Diff.Tests/bin/Debug/netcoreapp3.0/NetSoft.Diff.Tests.dll",
+            "program": "${workspaceFolder}/Netsoft.Diff.Tests/bin/Debug/netcoreapp3.0/Netsoft.Diff.Tests.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/NetSoft.Diff.Tests",
+            "cwd": "${workspaceFolder}/Netsoft.Diff.Tests",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
