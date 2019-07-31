@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>NetSoft.Frameworks.Tests</AssemblyName>
+    <AssemblyName>NetSoft.Diff.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetSoft.Frameworks\NetSoft.Frameworks.csproj" />
+    <ProjectReference Include="..\NetSoft.Diff\NetSoft.Diff.csproj" />
   </ItemGroup>
 
 </Project>

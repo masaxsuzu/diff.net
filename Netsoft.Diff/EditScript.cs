@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-[assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
-namespace NetSoft.Frameworks
+[assembly: InternalsVisibleTo("Netsoft.Diff.Tests")]
+namespace Netsoft.Diff
 {
     public interface IEditScript<T> : IReadOnlyCollection<IEdit<T>> where T : IEquatable<T>
     {

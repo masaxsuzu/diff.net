@@ -1,11 +1,11 @@
-﻿using NetSoft.Frameworks.Algorithms;
+﻿using Netsoft.Diff.Algorithms;
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace NetSoft.Frameworks
+namespace Netsoft.Diff
 {
     public static class DiffExtension
     {

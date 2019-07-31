@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("NetSoft.Frameworks.Tests")]
-namespace NetSoft.Frameworks.Algorithms
+[assembly: InternalsVisibleTo("Netsoft.Diff.Tests")]
+namespace Netsoft.Diff.Algorithms
 {
     internal static class OND
     {

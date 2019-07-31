@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/NetSoft.Frameworks.Tests/NetSoft.Frameworks.Tests.csproj",
+                "${workspaceFolder}/NetSoft.Diff.Tests/NetSoft.Diff.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/NetSoft.Frameworks.Tests/NetSoft.Frameworks.Tests.csproj",
+                "${workspaceFolder}/NetSoft.Diff.Tests/NetSoft.Diff.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/NetSoft.Frameworks.Tests/NetSoft.Frameworks.Tests.csproj",
+                "${workspaceFolder}/NetSoft.Diff.Tests/NetSoft.Diff.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

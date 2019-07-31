@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NetSoft.Frameworks.Algorithms
+namespace Netsoft.Diff.Algorithms
 {
     internal static class NullSafeHelper
     {

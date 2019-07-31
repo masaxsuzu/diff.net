@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace NetSoft.Frameworks
+namespace Netsoft.Diff
 {
     public static class Display
     {

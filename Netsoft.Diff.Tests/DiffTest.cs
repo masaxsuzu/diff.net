@@ -3,7 +3,7 @@ using System.Linq;
 
 using Xunit;
 
-namespace NetSoft.Frameworks.Tests
+namespace Netsoft.Diff.Tests
 {
     public class DiffTest
     {

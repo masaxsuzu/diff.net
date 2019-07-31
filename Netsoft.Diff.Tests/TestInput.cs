@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace NetSoft.Frameworks.Tests
+namespace Netsoft.Diff.Tests
 {
     public class TestInput
     {
