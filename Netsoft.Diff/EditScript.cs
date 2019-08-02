@@ -11,7 +11,7 @@ namespace Netsoft.Diff
         int Distance { get; }
     }
 
-    public interface IEdit<T> where T : IEquatable<T>
+    public interface IEdit<T> : IEquatable<IEdit<T>> where T : IEquatable<T>
     {
         short Action { get; }
         T From { get; }
@@ -43,6 +43,27 @@ namespace Netsoft.Diff
         public short Action { get; set; }
         public T Value { get; set; }
         public T From { get; set; }
+
+        public bool Equals(IEdit<T> other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Action == other.Action &&
+                Equals(Value, other.Value) &&
+                Equals(From, other.From);
+        }
+
+        private bool Equals(T x, T y)
+        {
+            if (x == null)
+            {
+                return y == null;
+            }
+            return x.Equals(y);
+        }
 
         public override string ToString()
         {

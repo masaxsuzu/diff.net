@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Netsoft.Diff.Tests
@@ -161,6 +162,99 @@ namespace Netsoft.Diff.Tests
                 }
             };
 
+        }
+
+        public static IEnumerable<object[]> Diff3()
+        {
+            yield return new object[]{
+                @"
+1",
+                @"
+1
+2",
+                @"
+1
+2
+3",
+                Push(0,
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 1, Value = "2" } },
+                    new Edit<IEdit<string>>(){ Action = 1, Value = new Edit<string>(){ Action = 1, Value = "3" } }
+                    )
+            };
+            yield return new object[]{
+                @"
+class A
+{
+    A(){}
+}
+",
+                @"
+class A
+{
+    B(){}
+}
+",
+                @"
+class A
+{
+    A(){}
+    B(){}
+}
+",
+                Push(2,
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "class A" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "{" } },
+                    new Edit<IEdit<string>>(){
+                        Action = 2,
+                        From = new Edit<string>(){ Action = 2,  From = "    A(){}", Value = "    B(){}" },
+                        Value = new Edit<string>(){ Action = 0, From = null , Value = "    A(){}", },
+                    },
+                    new Edit<IEdit<string>>(){
+                        Action = 1,
+                        Value = new Edit<string>(){ Action = 1, From = null , Value = "    B(){}", },
+                    },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "}" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } }
+                    )
+            };
+
+        }
+
+        public static IEnumerable<object[]> StringDiff3()
+        {
+            yield return new object[]{
+                "123",
+                "123",
+                "123",
+                Push(0,
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "2" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "3" } })
+            };
+            yield return new object[]{
+                "124",
+                "1234",
+                "12345",
+                Push(0,
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "2" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 1, Value = "3" } },
+                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "4" } },
+                    new Edit<IEdit<string>>(){ Action = 1, Value = new Edit<string>(){ Action = 1, Value = "5" } })
+            };
+        }
+
+        private static EditScript<T> Push<T>(int y, params Edit<T>[] x) where T : IEquatable<T>
+        {
+            var e = new EditScript<T>(y);
+            foreach (var item in x.Reverse())
+            {
+                e.Add(item);
+            }
+            return e;
         }
     }
 

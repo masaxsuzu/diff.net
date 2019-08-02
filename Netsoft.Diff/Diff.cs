@@ -24,6 +24,21 @@ namespace Netsoft.Diff
 
             return OND.Diff<string>(a.ToStrings().ToArray(), b.ToStrings().ToArray());
         }
+
+        public static IEditScript<IEdit<T>> Diff3<T>(this T[] a, T[] b, T[] c) where T : IEquatable<T>
+        {
+            var ab = a.Diff(b);
+            var ac = a.Diff(c);
+
+            return ab.ToArray().Diff(ac.ToArray());
+        }
+        public static IEditScript<IEdit<string>> Diff3(this string a, string b, string c)
+        {
+            var ab = a.Diff(b);
+            var ac = a.Diff(c);
+
+            return ab.ToArray().Diff(ac.ToArray());
+        }
         private static IEnumerable<string> ToStrings(this TextElementEnumerator enumerator)
         {
             while (true)
