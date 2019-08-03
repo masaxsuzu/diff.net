@@ -167,15 +167,9 @@ namespace Netsoft.Diff.Tests
         public static IEnumerable<object[]> Diff3()
         {
             yield return new object[]{
-                @"
-1",
-                @"
-1
-2",
-                @"
-1
-2
-3",
+                "\n1",
+                "\n1\n2",
+                "\n1\n2\n3",
                 Push(0,
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
@@ -184,25 +178,9 @@ namespace Netsoft.Diff.Tests
                     )
             };
             yield return new object[]{
-                @"
-class A
-{
-    A(){}
-}
-",
-                @"
-class A
-{
-    B(){}
-}
-",
-                @"
-class A
-{
-    A(){}
-    B(){}
-}
-",
+                "\nclass A\n{\n    A(){}\n}\n",
+                "\nclass A\n{\n    B(){}\n}\n",
+                "\nclass A\n{\n    A(){}\n    B(){}\n}\n",
                 Push(2,
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "class A" } },
