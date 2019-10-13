@@ -21,7 +21,17 @@ namespace Netsoft.Diff.Tests
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
         public void TestDiffByStrings(string[] x, string[] y, IEditScript<string> want)
         {
-            Diff(x, y, want);
+            var got = x.Diff(y);
+            AssertDifference<string>(want, got);
+        }
+
+        [Theory]
+        [Trait("Category", "Integer")]
+        [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
+        public void TestDiffByIntegers(int[] x, int[] y, IEditScript<int> want)
+        {
+            var got = x.Diff(y);
+            AssertDifference<int>(want, got);
         }
 
         [Theory]
@@ -32,22 +42,6 @@ namespace Netsoft.Diff.Tests
             var error = Assert.Throws<ArgumentNullException>(() => _ = x.Diff(y));
         }
 
-        [Theory]
-        [Trait("Category", "Integer")]
-        [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
-        public void TestDiffByIntegers(int[] x, int[] y, IEditScript<int> want)
-        {
-            Diff(x, y, want);
-        }
-
-
-        private void Diff<T>(T[] x, T[] y, IEditScript<T> want)
-            where T : IEquatable<T>
-        {
-            var got = x.Diff(y);
-
-            AssertDifference<T>(want, got);
-        }
         private void AssertDifference<T>(IEditScript<T> w, IEditScript<T> g) where T : IEquatable<T>
         {
             var want = w.ToArray();
