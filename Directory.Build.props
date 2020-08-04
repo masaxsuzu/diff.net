@@ -1,8 +1,8 @@
 ﻿<Project>
   <PropertyGroup>
     <Product>diff.net</Product>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <Copyright>Copyright 2019 diff.net</Copyright>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <Copyright>Copyright 2020 diff.net</Copyright>
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
