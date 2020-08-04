@@ -8,10 +8,8 @@ namespace Netsoft.Diff
     {
         public static string Show<T>(this IEditScript<T> ses) where T : IEquatable<T>
         {
-            return new StringBuilder()
-                .AppendJoin(System.Environment.NewLine,
-                    ses.Where(e => e.Action != 0)
-                    .Select(e =>
+            return ses.Where(e => e.Action != 0)
+                .Select(e =>
                 {
                     switch (e.Action)
                     {
@@ -26,7 +24,13 @@ namespace Netsoft.Diff
                         default:
                             return "";
                     }
-                })).ToString();
+                }).Aggregate((0, new StringBuilder()), (sb, s) => {
+                    if (sb.Item1 == 0) {
+                        return (sb.Item1+1, sb.Item2.Append(s));
+                    } else {
+                        return (sb.Item1+1, sb.Item2.Append(System.Environment.NewLine).Append(s));
+                    }
+                }).Item2.ToString();
         }
     }
 }

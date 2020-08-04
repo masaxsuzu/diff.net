@@ -1,0 +1,28 @@
+name: .NET Core
+
+on:
+  push:
+    tags:        
+      - v*.*.*
+
+jobs:
+  build:
+
+    runs-on: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100
+    - name: Setup Nuget
+      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Build with dotnet
+      run: dotnet test --configuration Release
+    - name: Build with dotnet
+      run: dotnet pack --configuration Release --no-build -o .\nupkg
+    - name: Add GPR Source
+      run: nuget sources Add -Name "GPR" -Source "https://nuget.pkg.github.com/masaxsuzu/index.json" -UserName "masaxsuzu" -Password ${{ secrets.PACKAGE_TOKEN }}
+    - name: Push to GitHub Packages
+      run: nuget push nupkg\*.nupkg -Source "GPR"

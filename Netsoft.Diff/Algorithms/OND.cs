@@ -64,7 +64,7 @@ namespace Netsoft.Diff.Algorithms
                 }
                 else if (p.Item1 - q.Item1 == 1 && p.Item2 == q.Item2)
                 {
-                    if (ses.TryPeek(out var added) && added.Action == 1)
+                    if (ses._TryPeek(out var added) && added.Action == 1)
                     {
                         added = ses.Pop();
                         var replaced = new Edit<T>() { Action = 2, From = x[q.Item1], Value = added.Value };
@@ -90,6 +90,17 @@ namespace Netsoft.Diff.Algorithms
         {
             r.Add(c, distance);
             return r;
+        }
+
+        private static bool _TryPeek<T>(this EditScript<T> ses, out IEdit<T> x) where T : IEquatable<T>
+        {
+            x = default;
+            if(ses.Count == 0) {
+                return false;
+            }
+
+            x = ses.Peek();
+            return true;
         }
     }
 }
