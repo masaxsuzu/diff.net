@@ -7,5 +7,7 @@
     <Deterministic>true</Deterministic>
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
     <PathMap>$(RepoRoot)=.</PathMap>
+    <Authors>masaxsuzu</Authors>
+    <RepositoryUrl>https://github.com/masaxsuzu/diff.net</RepositoryUrl>
   </PropertyGroup>
 </Project>
