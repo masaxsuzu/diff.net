@@ -55,7 +55,7 @@ namespace Netsoft.Diff.Algorithms
 
                 if (p.Item1 - q.Item1 == 1 && p.Item2 - q.Item2 == 1)
                 {
-                    ses = AppendRangeAtLast<T>(new Edit<T>() { Action = 0, Value = x[q.Item1] }, ses, 1);
+                    ses = AppendRangeAtLast<T>(new Edit<T>() { Action = 0, Value = x[q.Item1] }, ses, 0);
                 }
                 else if (p.Item2 - q.Item2 == 1 && p.Item1 == q.Item1)
                 {
