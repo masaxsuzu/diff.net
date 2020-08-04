@@ -68,7 +68,7 @@ namespace Netsoft.Diff.Algorithms
                     {
                         added = ses.Pop();
                         var replaced = new Edit<T>() { Action = 2, From = x[q.Item1], Value = added.Value };
-                        ses = AppendRangeAtLast<T>(replaced, ses, 2);
+                        ses = AppendRangeAtLast<T>(replaced, ses, 1);
                     }
                     else
                     {

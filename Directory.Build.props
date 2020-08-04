@@ -1,7 +1,7 @@
 ﻿<Project>
   <PropertyGroup>
     <Product>diff.net</Product>
-    <VersionPrefix>1.2.1</VersionPrefix>
+    <VersionPrefix>1.2.2</VersionPrefix>
     <Copyright>Copyright 2020 diff.net</Copyright>
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>

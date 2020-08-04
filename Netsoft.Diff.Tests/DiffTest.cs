@@ -42,6 +42,25 @@ namespace Netsoft.Diff.Tests
             var error = Assert.Throws<ArgumentNullException>(() => _ = x.Diff(y));
         }
 
+        [Fact]
+        public void TestDiffCustom()
+        {
+            var diff = new X[] {
+                new X() { V = 1},
+                new X() { V = 2},
+                new X() { V = 0},
+                new X() { V = 1},
+            }.Diff(new X[] {
+                new X() { V = 22},
+                new X() { V = 2},
+                new X() { V = 1},
+            });
+
+            Xunit.Assert.Equal(4, diff.Count);
+            Xunit.Assert.Equal(3, diff.Distance);
+
+        }
+
         private void AssertDifference<T>(IEditScript<T> w, IEditScript<T> g) where T : IEquatable<T>
         {
             var want = w.ToArray();
@@ -56,6 +75,19 @@ namespace Netsoft.Diff.Tests
                 Xunit.Assert.Equal(x.Action, y.Action);
                 Xunit.Assert.Equal(x.Value, y.Value);
             }
+        }
+    }
+    class X : IEquatable<X>
+    {
+        public int V { get; set; }
+        public bool Equals(X other)
+        {
+            return V == other.V;
+        }
+
+        public override string ToString()
+        {
+            return $"{V}";
         }
     }
 }

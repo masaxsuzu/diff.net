@@ -41,7 +41,7 @@ namespace Netsoft.Diff.Tests
                     new string[]{"a","b", "c" },
                     new string[]{"a","x","c","d" },
 
-                    new EditScript<string>(2){
+                    new EditScript<string>(1){
                         new Edit<string>(){Action = 1, Value =  "d" },
                         new Edit<string>(){Action = 0, Value =  "c" },
                         new Edit<string>(){Action = 2, Value =  "x", From = "b" },
@@ -52,7 +52,7 @@ namespace Netsoft.Diff.Tests
                     new string[]{"k","i","t","t","e","n" },
                     new string[]{"s","i","t","t","i","n","g" },
 
-                    new EditScript<string>(4){
+                    new EditScript<string>(2){
                         new Edit<string>(){Action = 1, Value =  "g" },
                         new Edit<string>(){Action = 0, Value =  "n" },
                         new Edit<string>(){Action = 2, Value =  "i", From = "e" },
@@ -82,7 +82,7 @@ namespace Netsoft.Diff.Tests
             yield return new object[]{
                     "xあz",
                     "x𩸽z",
-                    new EditScript<string>(2){
+                    new EditScript<string>(1){
                         new Edit<string>(){Action = 0, Value = "z" },
                         new Edit<string>(){Action =  2, Value =  "𩸽",From = "あ" },
                         new Edit<string>(){Action = 0, Value =  "x" },
@@ -123,7 +123,7 @@ namespace Netsoft.Diff.Tests
                 "-z" + System.Environment.NewLine+
                 "+y" + System.Environment.NewLine+
                 "+x" ,
-                new EditScript<string>(2)
+                new EditScript<string>(1)
                 {
                     new Edit<string>(){Action = 1, Value = "x"},
                     new Edit<string>(){Action = 0, Value = "0"},
@@ -181,7 +181,7 @@ namespace Netsoft.Diff.Tests
                 "\nclass A\n{\n    A(){}\n}\n",
                 "\nclass A\n{\n    B(){}\n}\n",
                 "\nclass A\n{\n    A(){}\n    B(){}\n}\n",
-                Push(2,
+                Push(1,
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "class A" } },
                     new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "{" } },
