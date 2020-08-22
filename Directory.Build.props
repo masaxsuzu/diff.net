@@ -1,13 +1,14 @@
 ﻿<Project>
   <PropertyGroup>
     <Product>diff.net</Product>
-    <VersionPrefix>1.2.2</VersionPrefix>
+    <VersionPrefix>1.3.0</VersionPrefix>
     <Copyright>Copyright 2020 diff.net</Copyright>
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
     <PathMap>$(RepoRoot)=.</PathMap>
     <Authors>masaxsuzu</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/masaxsuzu/diff.net</RepositoryUrl>
   </PropertyGroup>
 </Project>
