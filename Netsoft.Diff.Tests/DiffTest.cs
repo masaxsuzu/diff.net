@@ -12,7 +12,7 @@ namespace Netsoft.Diff.Tests
         [MemberData(nameof(TestInput.StringWithSurrogatePair), MemberType = typeof(TestInput))]
         public void TestDiff(string x, string y, IEditScript<string> want)
         {
-            var got = x.Diff(y);
+            var got = Differences.Between(x, y);
             AssertDifference<string>(want, got);
         }
 
@@ -21,7 +21,7 @@ namespace Netsoft.Diff.Tests
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
         public void TestDiffByStrings(string[] x, string[] y, IEditScript<string> want)
         {
-            var got = x.Diff(y);
+            var got = Differences.Between(x, y);
             AssertDifference<string>(want, got);
         }
 
@@ -30,7 +30,7 @@ namespace Netsoft.Diff.Tests
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
         public void TestDiffByIntegers(int[] x, int[] y, IEditScript<int> want)
         {
-            var got = x.Diff(y);
+            var got = Differences.Between(x, y);
             AssertDifference<int>(want, got);
         }
 
@@ -39,22 +39,24 @@ namespace Netsoft.Diff.Tests
         [MemberData(nameof(TestInput.Nulls), MemberType = typeof(TestInput))]
         public void TestDiffThrowsExceptionIfNullArgument(string[] x, string[] y)
         {
-            var error = Assert.Throws<ArgumentNullException>(() => _ = x.Diff(y));
+            var error = Assert.Throws<ArgumentNullException>(() => _ = Differences.Between(x, y));
         }
 
         [Fact]
         public void TestDiffCustom()
         {
-            var diff = new X[] {
-                new X() { V = 1},
-                new X() { V = 2},
-                new X() { V = 0},
-                new X() { V = 1},
-            }.Diff(new X[] {
-                new X() { V = 22},
-                new X() { V = 2},
-                new X() { V = 1},
-            });
+            var diff = Differences.Between(
+                new X[] {
+                    new X() { V = 1},
+                    new X() { V = 2},
+                    new X() { V = 0},
+                    new X() { V = 1},
+                },
+                new X[] {
+                    new X() { V = 22},
+                    new X() { V = 2},
+                    new X() { V = 1},
+                });
 
             Xunit.Assert.Equal(4, diff.Count);
             Xunit.Assert.Equal(3, diff.Distance);
