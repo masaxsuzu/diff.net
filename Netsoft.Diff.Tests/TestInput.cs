@@ -11,55 +11,55 @@ namespace Netsoft.Diff.Tests
             yield return new object[]{
                     new string[]{"h", "e" },
                     new string[]{"s","h", "e" },
-                    new EditScript<string>(0){
-                        new Edit<string>(){Action = 0, Value = "e" },
-                        new Edit<string>(){Action = 0, Value = "h" },
-                        new Edit<string>(){Action = 1, Value = "s" },
+                    new ChangeCollection<string>(0){
+                        new Change<string>(){Action = 0, Value = "e" },
+                        new Change<string>(){Action = 0, Value = "h" },
+                        new Change<string>(){Action = 1, Value = "s" },
                     }
                 };
             yield return new object[]{
                     new string[]{"s","h", "e" },
                     new string[]{   "h", "e" },
-                    new EditScript<string>(0){
-                        new Edit<string>(){Action = 0, Value =   "e" },
-                        new Edit<string>(){Action = 0, Value =   "h" },
-                        new Edit<string>(){Action = -1, Value =  "s" },
+                    new ChangeCollection<string>(0){
+                        new Change<string>(){Action = 0, Value =   "e" },
+                        new Change<string>(){Action = 0, Value =   "h" },
+                        new Change<string>(){Action = -1, Value =  "s" },
                     }
                 };
             yield return new object[]{
                     new string[]{      "x=", "1*", "3", ";"},
                     new string[]{"let","x=", "1*",       ";"},
-                    new EditScript<string>(0){
-                        new Edit<string>(){Action = 0, Value =  ";" },
-                        new Edit<string>(){Action = -1, Value =  "3" },
-                        new Edit<string>(){Action = 0, Value =  "1*" },
-                        new Edit<string>(){Action = 0, Value =  "x=" },
-                        new Edit<string>(){Action = 1, Value =  "let" },
+                    new ChangeCollection<string>(0){
+                        new Change<string>(){Action = 0, Value =  ";" },
+                        new Change<string>(){Action = -1, Value =  "3" },
+                        new Change<string>(){Action = 0, Value =  "1*" },
+                        new Change<string>(){Action = 0, Value =  "x=" },
+                        new Change<string>(){Action = 1, Value =  "let" },
                     }
                 };
             yield return new object[]{
                     new string[]{"a","b", "c" },
                     new string[]{"a","x","c","d" },
 
-                    new EditScript<string>(1){
-                        new Edit<string>(){Action = 1, Value =  "d" },
-                        new Edit<string>(){Action = 0, Value =  "c" },
-                        new Edit<string>(){Action = 2, Value =  "x", From = "b" },
-                        new Edit<string>(){Action = 0, Value =  "a" },
+                    new ChangeCollection<string>(1){
+                        new Change<string>(){Action = 1, Value =  "d" },
+                        new Change<string>(){Action = 0, Value =  "c" },
+                        new Change<string>(){Action = 2, Value =  "x", From = "b" },
+                        new Change<string>(){Action = 0, Value =  "a" },
                     }
                 };
             yield return new object[]{
                     new string[]{"k","i","t","t","e","n" },
                     new string[]{"s","i","t","t","i","n","g" },
 
-                    new EditScript<string>(2){
-                        new Edit<string>(){Action = 1, Value =  "g" },
-                        new Edit<string>(){Action = 0, Value =  "n" },
-                        new Edit<string>(){Action = 2, Value =  "i", From = "e" },
-                        new Edit<string>(){Action = 0, Value =  "t" },
-                        new Edit<string>(){Action = 0, Value =  "t" },
-                        new Edit<string>(){Action = 0, Value =  "i" },
-                        new Edit<string>(){Action = 2, Value =  "s", From = "k" },
+                    new ChangeCollection<string>(2){
+                        new Change<string>(){Action = 1, Value =  "g" },
+                        new Change<string>(){Action = 0, Value =  "n" },
+                        new Change<string>(){Action = 2, Value =  "i", From = "e" },
+                        new Change<string>(){Action = 0, Value =  "t" },
+                        new Change<string>(){Action = 0, Value =  "t" },
+                        new Change<string>(){Action = 0, Value =  "i" },
+                        new Change<string>(){Action = 2, Value =  "s", From = "k" },
                     }
             };
         }
@@ -69,11 +69,11 @@ namespace Netsoft.Diff.Tests
             yield return new object[]{
                     new int[]{ 1,2,3 },
                     new int[]{ 2,3,6},
-                    new EditScript<int>(0){
-                        new Edit<int>(){Action = 1, Value =  6 },
-                        new Edit<int>(){Action =  0, Value =  3 },
-                        new Edit<int>(){Action =  0, Value =  2 },
-                        new Edit<int>(){Action = -1, Value =  1 },
+                    new ChangeCollection<int>(0){
+                        new Change<int>(){Action = 1, Value =  6 },
+                        new Change<int>(){Action =  0, Value =  3 },
+                        new Change<int>(){Action =  0, Value =  2 },
+                        new Change<int>(){Action = -1, Value =  1 },
                     }
             };
         }
@@ -82,10 +82,10 @@ namespace Netsoft.Diff.Tests
             yield return new object[]{
                     "xあz",
                     "x𩸽z",
-                    new EditScript<string>(1){
-                        new Edit<string>(){Action = 0, Value = "z" },
-                        new Edit<string>(){Action =  2, Value =  "𩸽",From = "あ" },
-                        new Edit<string>(){Action = 0, Value =  "x" },
+                    new ChangeCollection<string>(1){
+                        new Change<string>(){Action = 0, Value = "z" },
+                        new Change<string>(){Action =  2, Value =  "𩸽",From = "あ" },
+                        new Change<string>(){Action = 0, Value =  "x" },
                     }
             };
         }
@@ -105,16 +105,16 @@ namespace Netsoft.Diff.Tests
         {
             yield return new object[]{
                 "",
-                new EditScript<string>(0)
+                new ChangeCollection<string>(0)
                 {
 
                 }
             };
             yield return new object[]{
                 "+" + System.Environment.NewLine,
-                new EditScript<string>(0)
+                new ChangeCollection<string>(0)
                 {
-                    new Edit<string>(){Action = 1, Value = System.Environment.NewLine},
+                    new Change<string>(){Action = 1, Value = System.Environment.NewLine},
 
                 }
             };
@@ -123,12 +123,12 @@ namespace Netsoft.Diff.Tests
                 "-z" + System.Environment.NewLine+
                 "+y" + System.Environment.NewLine+
                 "+x" ,
-                new EditScript<string>(1)
+                new ChangeCollection<string>(1)
                 {
-                    new Edit<string>(){Action = 1, Value = "x"},
-                    new Edit<string>(){Action = 0, Value = "0"},
-                    new Edit<string>(){Action = 2, Value = "y", From = "z"},
-                    new Edit<string>(){Action = -1, Value = "w",},
+                    new Change<string>(){Action = 1, Value = "x"},
+                    new Change<string>(){Action = 0, Value = "0"},
+                    new Change<string>(){Action = 2, Value = "y", From = "z"},
+                    new Change<string>(){Action = -1, Value = "w",},
                 }
             };
 
@@ -139,26 +139,26 @@ namespace Netsoft.Diff.Tests
             yield return new object[]{
                 new string[] {"notnull",null,"notnull" },
                 new string[] {"notnull","notnull" },
-                new EditScript<string>(0){
-                    new Edit<string>(){Action =  0, Value = "notnull" },
-                    new Edit<string>(){Action = -1, Value = null },
-                    new Edit<string>(){Action =  0, Value = "notnull" },
+                new ChangeCollection<string>(0){
+                    new Change<string>(){Action =  0, Value = "notnull" },
+                    new Change<string>(){Action = -1, Value = null },
+                    new Change<string>(){Action =  0, Value = "notnull" },
                 }
             };
             yield return new object[]{
                 new string[] {"notnull","notnull" },
                 new string[] {"notnull",null,"notnull" },
-                new EditScript<string>(0){
-                    new Edit<string>(){Action =  0, Value = "notnull" },
-                    new Edit<string>(){Action = 1, Value = null },
-                    new Edit<string>(){Action =  0, Value = "notnull" },
+                new ChangeCollection<string>(0){
+                    new Change<string>(){Action =  0, Value = "notnull" },
+                    new Change<string>(){Action = 1, Value = null },
+                    new Change<string>(){Action =  0, Value = "notnull" },
                 }
             };
             yield return new object[]{
                 new string[] { null },
                 new string[] { null },
-                new EditScript<string>(0){
-                    new Edit<string>(){Action =  0, Value = null },
+                new ChangeCollection<string>(0){
+                    new Change<string>(){Action =  0, Value = null },
                 }
             };
 
@@ -171,10 +171,10 @@ namespace Netsoft.Diff.Tests
                 "\n1\n2",
                 "\n1\n2\n3",
                 Push(0,
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 1, Value = "2" } },
-                    new Edit<IEdit<string>>(){ Action = 1, Value = new Edit<string>(){ Action = 1, Value = "3" } }
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "1" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 1, Value = "2" } },
+                    new Change<IChange<string>>(){ Action = 1, Value = new Change<string>(){ Action = 1, Value = "3" } }
                     )
             };
             yield return new object[]{
@@ -182,20 +182,20 @@ namespace Netsoft.Diff.Tests
                 "\nclass A\n{\n    B(){}\n}\n",
                 "\nclass A\n{\n    A(){}\n    B(){}\n}\n",
                 Push(1,
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "class A" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "{" } },
-                    new Edit<IEdit<string>>(){
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "class A" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "{" } },
+                    new Change<IChange<string>>(){
                         Action = 2,
-                        From = new Edit<string>(){ Action = 2,  From = "    A(){}", Value = "    B(){}" },
-                        Value = new Edit<string>(){ Action = 0, From = null , Value = "    A(){}", },
+                        From = new Change<string>(){ Action = 2,  From = "    A(){}", Value = "    B(){}" },
+                        Value = new Change<string>(){ Action = 0, From = null , Value = "    A(){}", },
                     },
-                    new Edit<IEdit<string>>(){
+                    new Change<IChange<string>>(){
                         Action = 1,
-                        Value = new Edit<string>(){ Action = 1, From = null , Value = "    B(){}", },
+                        Value = new Change<string>(){ Action = 1, From = null , Value = "    B(){}", },
                     },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "}" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "" } }
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "}" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "" } }
                     )
             };
 
@@ -208,26 +208,26 @@ namespace Netsoft.Diff.Tests
                 "123",
                 "123",
                 Push(0,
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "2" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "3" } })
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "1" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "2" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "3" } })
             };
             yield return new object[]{
                 "124",
                 "1234",
                 "12345",
                 Push(0,
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "1" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "2" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 1, Value = "3" } },
-                    new Edit<IEdit<string>>(){ Action = 0, Value = new Edit<string>(){ Action = 0, Value = "4" } },
-                    new Edit<IEdit<string>>(){ Action = 1, Value = new Edit<string>(){ Action = 1, Value = "5" } })
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "1" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "2" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 1, Value = "3" } },
+                    new Change<IChange<string>>(){ Action = 0, Value = new Change<string>(){ Action = 0, Value = "4" } },
+                    new Change<IChange<string>>(){ Action = 1, Value = new Change<string>(){ Action = 1, Value = "5" } })
             };
         }
 
-        private static EditScript<T> Push<T>(int y, params Edit<T>[] x) where T : IEquatable<T>
+        private static ChangeCollection<T> Push<T>(int y, params Change<T>[] x) where T : IEquatable<T>
         {
-            var e = new EditScript<T>(y);
+            var e = new ChangeCollection<T>(y);
             foreach (var item in x.Reverse())
             {
                 e.Add(item);
@@ -245,7 +245,7 @@ namespace Netsoft.Diff.Tests
                     Enumerable.Range(0,500).ToArray(),
                     Enumerable
                     .Range(0,500)
-                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
+                    .Select(i =>new Change<int>(){Action = 0, Value = i })
                     .To()
             };
         }
@@ -256,7 +256,7 @@ namespace Netsoft.Diff.Tests
                     Enumerable.Range(0,1000).ToArray(),
                     Enumerable
                     .Range(0,1000)
-                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
+                    .Select(i =>new Change<int>(){Action = 0, Value = i })
                     .To()
             };
         }
@@ -267,14 +267,14 @@ namespace Netsoft.Diff.Tests
                     Enumerable.Range(0,2000).ToArray(),
                     Enumerable
                     .Range(0,2000)
-                    .Select(i =>new Edit<int>(){Action = 0, Value = i })
+                    .Select(i =>new Change<int>(){Action = 0, Value = i })
                     .To()
             };
         }
 
-        private static EditScript<int> To(this IEnumerable<Edit<int>> from)
+        private static ChangeCollection<int> To(this IEnumerable<Change<int>> from)
         {
-            var to = new EditScript<int>(0);
+            var to = new ChangeCollection<int>(0);
             foreach (var item in from.Reverse())
             {
                 to.Push(item);

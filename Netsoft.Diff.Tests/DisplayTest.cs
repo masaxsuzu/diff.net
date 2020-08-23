@@ -7,7 +7,7 @@ namespace Netsoft.Diff.Tests
         [Theory]
         [Trait("Category", "Show")]
         [MemberData(nameof(TestInput.Show), MemberType = typeof(TestInput))]
-        public void Show(string want, IEditScript<string> input)
+        public void Show(string want, IChangeCollection<string> input)
         {
             string got = input.Show<string>();
 

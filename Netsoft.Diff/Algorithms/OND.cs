@@ -7,7 +7,7 @@ namespace Netsoft.Diff.Algorithms
 {
     internal static class OND
     {
-        public static EditScript<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
+        public static ChangeCollection<T> Diff<T>(T[] x, T[] y) where T : IEquatable<T>
         {
             int m = x.Length;
             int n = y.Length;
@@ -36,7 +36,7 @@ namespace Netsoft.Diff.Algorithms
                     }
                     if (k == n - m && i == m)
                     {
-                        return Backtrack<T>(new EditScript<T>(0), path.ToArray(), x, y);
+                        return Backtrack<T>(new ChangeCollection<T>(0), path.ToArray(), x, y);
                     }
                     V[offset + k] = i;
                 }
@@ -44,7 +44,7 @@ namespace Netsoft.Diff.Algorithms
 
             throw new NotImplementedException("Found a bug. Never reach here if the implementation is correct.");
         }
-        private static EditScript<T> Backtrack<T>(EditScript<T> ses, (int, int)[] path, T[] x, T[] y) where T : IEquatable<T>
+        private static ChangeCollection<T> Backtrack<T>(ChangeCollection<T> ses, (int, int)[] path, T[] x, T[] y) where T : IEquatable<T>
         {
             int i = path.Length - 1;
             int k = 1;
@@ -55,11 +55,11 @@ namespace Netsoft.Diff.Algorithms
 
                 if (p.Item1 - q.Item1 == 1 && p.Item2 - q.Item2 == 1)
                 {
-                    ses = AppendRangeAtLast<T>(new Edit<T>() { Action = 0, Value = x[q.Item1] }, ses, 0);
+                    ses = AppendRangeAtLast<T>(new Change<T>() { Action = 0, Value = x[q.Item1] }, ses, 0);
                 }
                 else if (p.Item2 - q.Item2 == 1 && p.Item1 == q.Item1)
                 {
-                    ses = AppendRangeAtLast<T>(new Edit<T>() { Action = 1, Value = y[q.Item2] }, ses, 1);
+                    ses = AppendRangeAtLast<T>(new Change<T>() { Action = 1, Value = y[q.Item2] }, ses, 1);
 
                 }
                 else if (p.Item1 - q.Item1 == 1 && p.Item2 == q.Item2)
@@ -67,12 +67,12 @@ namespace Netsoft.Diff.Algorithms
                     if (ses._TryPeek(out var added) && added.Action == 1)
                     {
                         added = ses.Pop();
-                        var replaced = new Edit<T>() { Action = 2, From = x[q.Item1], Value = added.Value };
+                        var replaced = new Change<T>() { Action = 2, From = x[q.Item1], Value = added.Value };
                         ses = AppendRangeAtLast<T>(replaced, ses, 1);
                     }
                     else
                     {
-                        ses = AppendRangeAtLast<T>(new Edit<T>() { Action = -1, Value = x[q.Item1] }, ses, 1);
+                        ses = AppendRangeAtLast<T>(new Change<T>() { Action = -1, Value = x[q.Item1] }, ses, 1);
                     }
                 }
                 else
@@ -86,13 +86,13 @@ namespace Netsoft.Diff.Algorithms
             }
             return ses;
         }
-        private static EditScript<T> AppendRangeAtLast<T>(Edit<T> c, EditScript<T> r, int distance) where T : IEquatable<T>
+        private static ChangeCollection<T> AppendRangeAtLast<T>(Change<T> c, ChangeCollection<T> r, int distance) where T : IEquatable<T>
         {
             r.Add(c, distance);
             return r;
         }
 
-        private static bool _TryPeek<T>(this EditScript<T> ses, out IEdit<T> x) where T : IEquatable<T>
+        private static bool _TryPeek<T>(this ChangeCollection<T> ses, out IChange<T> x) where T : IEquatable<T>
         {
             x = default;
             if(ses.Count == 0) {

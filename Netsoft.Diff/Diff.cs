@@ -9,7 +9,7 @@ namespace Netsoft.Diff
 {
     public static class Differences
     {
-        public static IEditScript<T> Between<T>(T[] x, T[] y) where T : IEquatable<T>
+        public static IChangeCollection<T> Between<T>(T[] x, T[] y) where T : IEquatable<T>
         {
             if (x == null || y == null)
             {
@@ -17,7 +17,7 @@ namespace Netsoft.Diff
             }
             return OND.Diff(x, y);
         }
-        public static IEditScript<string> Between(string x, string y)
+        public static IChangeCollection<string> Between(string x, string y)
         {
             var a = StringInfo.GetTextElementEnumerator(x);
             var b = StringInfo.GetTextElementEnumerator(y);

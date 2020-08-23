@@ -6,7 +6,7 @@ namespace Netsoft.Diff
 {
     public static class Display
     {
-        public static string Show<T>(this IEditScript<T> ses) where T : IEquatable<T>
+        public static string Show<T>(this IChangeCollection<T> ses) where T : IEquatable<T>
         {
             return ses.Where(e => e.Action != 0)
                 .Select(e =>

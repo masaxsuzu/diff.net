@@ -10,7 +10,7 @@ namespace Netsoft.Diff.Tests
         [Theory]
         [Trait("Category", "SurrogatePair")]
         [MemberData(nameof(TestInput.StringWithSurrogatePair), MemberType = typeof(TestInput))]
-        public void TestDiff(string x, string y, IEditScript<string> want)
+        public void TestDiff(string x, string y, IChangeCollection<string> want)
         {
             var got = Differences.Between(x, y);
             AssertDifference<string>(want, got);
@@ -19,7 +19,7 @@ namespace Netsoft.Diff.Tests
         [Theory]
         [Trait("Category", "String")]
         [MemberData(nameof(TestInput.Strings), MemberType = typeof(TestInput))]
-        public void TestDiffByStrings(string[] x, string[] y, IEditScript<string> want)
+        public void TestDiffByStrings(string[] x, string[] y, IChangeCollection<string> want)
         {
             var got = Differences.Between(x, y);
             AssertDifference<string>(want, got);
@@ -28,7 +28,7 @@ namespace Netsoft.Diff.Tests
         [Theory]
         [Trait("Category", "Integer")]
         [MemberData(nameof(TestInput.Integers), MemberType = typeof(TestInput))]
-        public void TestDiffByIntegers(int[] x, int[] y, IEditScript<int> want)
+        public void TestDiffByIntegers(int[] x, int[] y, IChangeCollection<int> want)
         {
             var got = Differences.Between(x, y);
             AssertDifference<int>(want, got);
@@ -63,7 +63,7 @@ namespace Netsoft.Diff.Tests
 
         }
 
-        private void AssertDifference<T>(IEditScript<T> w, IEditScript<T> g) where T : IEquatable<T>
+        private void AssertDifference<T>(IChangeCollection<T> w, IChangeCollection<T> g) where T : IEquatable<T>
         {
             var want = w.ToArray();
             var got = g.ToArray();

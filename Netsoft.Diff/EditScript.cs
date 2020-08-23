@@ -6,30 +6,30 @@ using System.Text;
 [assembly: InternalsVisibleTo("Netsoft.Diff.Tests")]
 namespace Netsoft.Diff
 {
-    public interface IEditScript<T> : IReadOnlyCollection<IEdit<T>> where T : IEquatable<T>
+    public interface IChangeCollection<T> : IReadOnlyCollection<IChange<T>> where T : IEquatable<T>
     {
         int Distance { get; }
     }
 
-    public interface IEdit<T> : IEquatable<IEdit<T>> where T : IEquatable<T>
+    public interface IChange<T> : IEquatable<IChange<T>> where T : IEquatable<T>
     {
         short Action { get; }
         T From { get; }
         T Value { get; }
     }
-    internal class EditScript<T> : Stack<IEdit<T>>, IEditScript<T> where T : IEquatable<T>
+    internal class ChangeCollection<T> : Stack<IChange<T>>, IChangeCollection<T> where T : IEquatable<T>
     {
-        public EditScript(int init)
+        public ChangeCollection(int init)
         {
             Distance = init;
         }
 
         public int Distance { get; private set; }
-        internal void Add(Edit<T> item)
+        internal void Add(Change<T> item)
         {
             Add(item, 1);
         }
-        public void Add(Edit<T> item, int distance)
+        public void Add(Change<T> item, int distance)
         {
             Push(item);
             if (item?.Action != 0)
@@ -38,13 +38,13 @@ namespace Netsoft.Diff
             }
         }
     }
-    internal class Edit<T> : IEdit<T> where T : IEquatable<T>
+    internal class Change<T> : IChange<T> where T : IEquatable<T>
     {
         public short Action { get; set; }
         public T Value { get; set; }
         public T From { get; set; }
 
-        public bool Equals(IEdit<T> other)
+        public bool Equals(IChange<T> other)
         {
             if (other == null)
             {
