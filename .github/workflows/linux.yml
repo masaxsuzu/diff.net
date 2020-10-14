@@ -1,0 +1,29 @@
+name: Linux
+
+on:
+  push:
+    branches:
+      - master
+      - try-*
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.100
+      - name: Build with dotnet
+        run: dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov /p:PathMap=""
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./Netsoft.Diff.Tests/TestResults/coverage.netcoreapp3.1.info"
