@@ -76,6 +76,7 @@ namespace Netsoft.Diff.Tests
                 var y = got[i];
                 Xunit.Assert.Equal(x.Action, y.Action);
                 Xunit.Assert.Equal(x.Value, y.Value);
+                Xunit.Assert.Equal(x, y);
             }
         }
     }
