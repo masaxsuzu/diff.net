@@ -19,7 +19,7 @@ jobs:
     - name: Setup Nuget
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
-      run: dotnet test --configuration Release
+      run: dotnet test --configuration Release --collect:"Code Coverage"
     - name: Build with dotnet
       run: dotnet pack --configuration Release --no-build -o .\nupkg
     - name: Add GPR Source
