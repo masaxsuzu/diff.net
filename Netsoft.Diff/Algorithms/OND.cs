@@ -42,7 +42,7 @@ namespace Netsoft.Diff.Algorithms
                 }
             }
 
-            throw new NotImplementedException("Found a bug. Never reach here if the implementation is correct.");
+            throw new NotImplementedException("[Unreachable code] Please kindly submit this bug to https://github.com/masaxsuzu/diff.net/issues.");
         }
         private static ChangeCollection<T> Backtrack<T>(ChangeCollection<T> ses, (int, int)[] path, T[] x, T[] y) where T : IEquatable<T>
         {
